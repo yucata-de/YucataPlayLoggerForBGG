@@ -25,7 +25,7 @@
         js.src = jsFilePath;
         document.body.appendChild(js);
       }
-      includeJs("http://localhost:8888/Source Code/scripts/jquery-3.2.1.js");
+      // includeJs("http://localhost:8888/Source Code/scripts/jquery-3.2.1.js");
     }
     
     var LoggedInAs="";
