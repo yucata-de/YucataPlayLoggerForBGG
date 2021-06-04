@@ -7012,9 +7012,35 @@
 
 function saveMultipleGamePlays() {
 
+  function getLoggedInUser() {
+    var SPLUuser = {};
+    var oReq = new XMLHttpRequest();
+    oReq.onload = function(responseJSON){
+      console.log(responseJSON.target.status+"|"+responseJSON.target.statusText);
+      if (responseJSON.target.status==200){
+        console.log("result 200 fetching user");
+        var oUser = JSON.parse(responseJSON.target.responseText);
+        bggLoggedInUser = oUser.username;
+        if (!oUser.loggedIn){
+          alert("You aren't logged in.");
+          throw new Error("You aren't logged in.");
+        } else {
+          // Continue:
+          getOldPlaysNextPage();
+        }
+      } else {
+        console.log("other status code, can't determine user");
+        alert("Can't determine who you are.  Reload, Login if needed and try again.");
+        throw new Error("Can't determine user.");
+      }
+    };
+    oReq.open("get","/api/users/current",true);
+    oReq.send();
+  }
+
   function getOldPlaysNextPage() {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://www.boardgamegeek.com/xmlapi2/plays?username=stonetest12&page=" + iPage);
+    xhr.open("GET", "https://www.boardgamegeek.com/xmlapi2/plays?username=" + bggLoggedInUser + "&page=" + iPage);
     xhr.onreadystatechange = handleGetOldPlaysReadystatechange;
     if (iTooManyRequestsError > TOO_MANY_REQUESTS_ERROR_THRESHOLD) {
       iTooManyRequestsError = 1;
@@ -7158,8 +7184,9 @@ function saveMultipleGamePlays() {
   var iTooManyRequestsError = 1;
   var aOldYucataGameIds = [];
   var xhr;
-  getOldPlaysNextPage();
+  var bggLoggedInUser = "";
 
+  getLoggedInUser();
 
 
   function yucataGameType2BggId(yucataGameType) {
@@ -7533,4 +7560,3 @@ function saveMultipleGamePlays() {
     }
   }
 }
-
