@@ -7125,36 +7125,54 @@ function saveMultipleGamePlays() {
       }
     }
   }
-
-  function saveNewGamePlays(aOldYucataGameIdsIndex) {
-    if (aOldYucataGameIdsIndex >= yucataPlays.length) {
+  function getDateString(date) {
+    var iMonth = date.getMonth() + 1;
+    var iDay = date.getDate();
+    return date.getFullYear() + '-' + (iMonth < 10 ? '0' + iMonth : iMonth) + '-' + (iDay < 10 ? '0' + iDay : iDay);
+  }
+  function saveNewGamePlays(oldYucataGameIdsIndex) {
+    if (oldYucataGameIdsIndex >= yucataPlays.length) {
       return;
     }
-    var oYucataPlay = yucataPlays[aOldYucataGameIdsIndex];
-    console.log("Saving play " + aOldYucataGameIdsIndex + " ('" + oYucataPlay.CustomGameName + "', yucata game id: " + oYucataPlay.GameId + ")");
+    var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
+    console.log("Saving play " + oldYucataGameIdsIndex + " ('" + oYucataPlay.CustomGameName + "', yucata game id: " + oYucataPlay.GameId + ")");
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
-    var hasSavedNewPlay = false;
     if (iBggGameId === -1) {
       console.log("Mapping of Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id not defined in Code yet.");
+      saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
       console.log("    ---- This play is already logged at BGG.");
+      saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else {
-      document.getElementById('objectid9999').value = iBggGameId;
-      document.getElementById('SPLU_PlayedAt').value = 'yucata.de';
-      var finishedOnDate = new Date(Number(oYucataPlay.FinishedOn.slice(6, -2)));
-      var iMonth = finishedOnDate.getMonth() + 1;
-      var iDay = finishedOnDate.getDate();
-      var sFinishedOnDate = finishedOnDate.getFullYear() + '-' + (iMonth < 10 ? '0' + iMonth : iMonth) + '-' + (iDay < 10 ? '0' + iDay : iDay);
-      document.getElementById('playdate99').value = sFinishedOnDate;
-      document.getElementById('SPLUplayDateInput').value = sFinishedOnDate;
-      document.getElementById('quickplay_quantity99').value = 1;
-      document.getElementById('quickplay_comments99').value = "https://www.yucata.de/en/Game/" + oYucataPlay.GameTypeName + "/" + oYucataPlay.GameId;
-      saveGamePlay('none');
-      hasSavedNewPlay = true;
+      var aPlaydata = [];
+      aPlaydata.push([ 'playdate', getDateString(new Date(Number(oYucataPlay.FinishedOn.slice(6, -2)))) ]);
+      aPlaydata.push([ 'dateinput', getDateString(new Date()) ]);
+      aPlaydata.push([ 'quantity', 1 ]);
+      aPlaydata.push([ 'location', 'yucata.de' ]);
+      aPlaydata.push([ 'objectid', iBggGameId ]);
+      aPlaydata.push([ 'objecttype', 'thing' ]);
+      aPlaydata.push([ 'comments', 'https://www.yucata.de/en/Game/' + oYucataPlay.GameTypeName + '/' + oYucataPlay.GameId ]);
+      saveNewBggPlay(aPlaydata, oldYucataGameIdsIndex);
     }
-    setTimeout(function() {
-      saveNewGamePlays(aOldYucataGameIdsIndex + 1);
-    }, hasSavedNewPlay ? 1000 : 0);
+  }
+
+  function saveNewBggPlay(aPlaydata, oldYucataGameIdsIndex) {
+    var querystring = "";
+    aPlaydata.forEach(function(dataTuple, dataTupleIdx){
+      querystring += '&' + dataTuple[0] + '=' + encodeURIComponent(dataTuple[1]);
+    });
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST","/geekplay.php", true);
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var res = parseXml(xhr.responseText);
+        console.log(res);
+        saveNewGamePlays(oldYucataGameIdsIndex + 1);
+      }
+    };
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Accept","application/json, text/plain, */*");/**/
+    xmlhttp.send('ajax=1&action=save&version=2' + querystring);
   }
 
   // Get XML parser (browser dependent):
