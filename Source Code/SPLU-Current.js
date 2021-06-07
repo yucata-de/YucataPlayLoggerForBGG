@@ -29,7 +29,7 @@
       // Load styles:
       var style=document.createElement('style');
       style.type='text/css';
-      style.innerHTML='.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em; margin-bottom: 1em; }';
+      style.innerHTML='.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }';
       document.getElementsByTagName('head')[0].appendChild(style);
     }
     
@@ -291,9 +291,7 @@
     +'<div style="display:table; margin-top:15px;">'
 
       +'<div>'
-        +'<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">'
-          + '<p>Drag the file of yucata plays to this Drop Zone to add them to BGG ...</p>'
-        +'</div>'
+        +'<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">Yucata Play File Drop Zone</div>'
       +'</div>'
 
       +'<div>'
@@ -321,6 +319,12 @@
           +'<div id="SPLUexpansionResults"></div>'
         +'</div>'
       +'</div>'
+
+      +'<div>'
+        +'<textarea id="log_area" readonly rows="5" cols="68" placeholder="Either drop your file with the yucata plays into to box above or select it via the file selector and then click the button!">'
+        +'</textarea>'
+      +'</div>'
+
     +'</div>'
     +'<div style="display:table;">'
       +'<div style="display:table-row;">'
@@ -6340,6 +6344,7 @@ function saveMultipleGamePlays(file) {
           throw new Error("You aren't logged in.");
         } else {
           // Continue:
+          log("Reading all your BGG logs (to prevent double log creation) ...");
           getOldPlaysNextPage();
         }
       } else {
@@ -6395,6 +6400,7 @@ function saveMultipleGamePlays(file) {
               }
             }
             console.log(txt);
+            log_startProcessing(file);
           }
         }
         if (file) {
@@ -6429,7 +6435,7 @@ function saveMultipleGamePlays(file) {
           }
           var gameId = Number(sGameId);
           if (aOldYucataGameIds.indexOf(gameId) !== -1) {
-            console.log("Inconsistency in BGG logs of Yucata plays: Yucata game with GameId " + gameId + " has been logged plays at BGG.");
+            log("Yucata play " + oYucataPlay.GameId + " : Found several BGG play logs with this yucata game id.", LOG_ENTRY_TYPE.WARNING);
             continue;
           }
           aOldYucataGameIds.push(gameId);
@@ -6450,15 +6456,15 @@ function saveMultipleGamePlays(file) {
       return;
     }
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
-    console.log("Saving play " + oldYucataGameIdsIndex + " ('" + oYucataPlay.CustomGameName + "', yucata game id: " + oYucataPlay.GameId + ")");
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
-      console.log("Mapping of Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id not defined in Code yet.");
+      log("Yucata play " + oYucataPlay.GameId + " : Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR);
       saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
-      console.log("    ---- This play is already logged at BGG.");
+      log("Yucata play " + oYucataPlay.GameId + " : Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO);
       saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else {
+      log("Yucata play " + oYucataPlay.GameId + " : Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK);
       var aPlaydata = [];
       aPlaydata.push([ 'playdate', getDateString(new Date(Number(oYucataPlay.FinishedOn.slice(6, -2)))) ]);
       aPlaydata.push([ 'dateinput', getDateString(new Date()) ]);
@@ -6897,7 +6903,7 @@ function saveMultipleGamePlays(file) {
 function fileDropHandler(ev) {
   var file;
 
-  console.log('File(s) dropped');
+  //console.log('File(s) dropped');
 
   // Prevent default behavior (Prevent file from being opened)
   ev.preventDefault();
@@ -6905,7 +6911,7 @@ function fileDropHandler(ev) {
   if (ev.dataTransfer.items) {
     // Use DataTransferItemList interface to access the file(s)
     if (ev.dataTransfer.items.length > 1) {
-      console.log("Drop only *one* file !");
+      log("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR);
       return;
     }
     // If dropped items aren't files, reject them
@@ -6915,17 +6921,29 @@ function fileDropHandler(ev) {
   } else {
     // Use DataTransfer interface to access the file(s)
     if (ev.dataTransfer.files.length > 1) {
-      console.log("Drop only *one* file !");
+      log("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR);
       return;
     }
     file = ev.dataTransfer.files[0];
   }
-  console.log('File name = ' + file.name);
+  log_startProcessing(file);
   saveMultipleGamePlays(file);
 }
 
 function fileDragOverHandler(ev) {
-  //console.log('File(s) in drop zone');
   // Prevent default behavior (Prevent file from being opened)
   ev.preventDefault();
+}
+var LOG_ENTRY_TYPE = {
+  INFO: 0,
+  OK: 1,
+  WARNING: 2,
+  ERROR: 3
+};
+function log(txt, logEntryType) {
+  var log_area = document.getElementById("log_area");
+  log_area.value += (log_area.value === '' ? '' : '\n') + txt;
+}
+function log_startProcessing(file) {
+  log('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...');
 }
