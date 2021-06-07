@@ -18,14 +18,19 @@
     }
     //Check if SPLU is already open, throw an error if not
     if(document.getElementById('SPLUwindow')){throw new Error("SPLU Already Running");} else {
-      // Load some libs:
+      // Load javascript libs:
       function includeJs(jsFilePath) {
-        var js = document.createElement("script");
-        js.type = "text/javascript";
-        js.src = jsFilePath;
-        document.body.appendChild(js);
+        var f = document.createElement("script");
+        f.type = "text/javascript";
+        f.src = jsFilePath;
+        document.body.appendChild(f);
       }
-      // includeJs("http://localhost:8888/Source Code/scripts/jquery-3.2.1.js");
+      // includeJs("https://localhost:8888/Source Code/scripts/jquery-3.2.1.js");
+      // Load styles:
+      var style=document.createElement('style');
+      style.type='text/css';
+      style.innerHTML='.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em; margin-bottom: 1em; }';
+      document.getElementsByTagName('head')[0].appendChild(style);
     }
     
     var LoggedInAs="";
@@ -284,7 +289,14 @@
     +'</div>'
   +'</div>'
     +'<div style="display:table; margin-top:15px;">'
-      +'<div style="display:table-row;">'
+
+      +'<div>'
+        +'<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">'
+          + '<p>Drag the file of yucata plays to this Drop Zone to add them to BGG ...</p>'
+        +'</div>'
+      +'</div>'
+
+      +'<div>'
         +'<div class="BRcells">'
           +'<div>'
             +'<input id="saveMultipleGamePlaysUpload" type="file" />'
@@ -292,7 +304,7 @@
         +'</div>'
         +'<div class="BRcells">'
           +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Submit Multiple Plays</a>'
+            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Add Plays to BGG</a>'
           +'</div>'
         +'</div>'
         +'<div class="BRcells" id="SPLUeditPlayDiv" style="display:none;">'
@@ -6312,7 +6324,7 @@
   oReq.send();
 
 
-function saveMultipleGamePlays() {
+function saveMultipleGamePlays(file) {
 
   function getLoggedInUser() {
     var SPLUuser = {};
@@ -6360,36 +6372,37 @@ function saveMultipleGamePlays() {
 
   function handleGetOldPlaysReadystatechange() {
     if (xhr.readyState === 4) {
-      //console.log(xhr.status);
-      //console.log(xhr.responseText);
       // Parse the XML response:
       var res = parseXml(xhr.responseText);
       if (res.childNodes[0].childNodes.length === 1) {
         // Last (empty) page received
-        var x = document.getElementById("saveMultipleGamePlaysUpload");
-        //var filename = file.value;
-        //var file = file.files[0];
-        var txt ='';
-        if ('files' in x) {
-          if (x.files.length == 0) {
-            txt = "Select one or more files.";
-          } else {
-            for (var i = 0; i < x.files.length; i++) {
-              txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-              var file = x.files[i];
-              if ('name' in file) {
-                txt += "name: " + file.name + "<br>";
-              }
-              if ('size' in file) {
-                txt += "size: " + file.size + " bytes <br>";
-              }
-              var read = new FileReader();
-              read.readAsBinaryString(file);
-              read.onloadend = function(){
-                  yucataPlays = JSON.parse(read.result).data;
-                  saveNewGamePlays(0);
+        if (!file) {
+          var x = document.getElementById("saveMultipleGamePlaysUpload");
+          var txt ='';
+          if ('files' in x) {
+            if (x.files.length == 0) {
+              txt = "Select one or more files.";
+            } else {
+              for (var i = 0; i < x.files.length; i++) {
+                txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                file = x.files[i];
+                if ('name' in file) {
+                  txt += "name: " + file.name + "<br>";
+                }
+                if ('size' in file) {
+                  txt += "size: " + file.size + " bytes <br>";
+                }
               }
             }
+            console.log(txt);
+          }
+        }
+        if (file) {
+          var read = new FileReader();
+          read.readAsBinaryString(file);
+          read.onloadend = function(){
+              yucataPlays = JSON.parse(read.result).data;
+              saveNewGamePlays(0);
           }
         }
       } else {
@@ -6879,4 +6892,40 @@ function saveMultipleGamePlays() {
         return -1;
     }
   }
+}
+
+function fileDropHandler(ev) {
+  var file;
+
+  console.log('File(s) dropped');
+
+  // Prevent default behavior (Prevent file from being opened)
+  ev.preventDefault();
+
+  if (ev.dataTransfer.items) {
+    // Use DataTransferItemList interface to access the file(s)
+    if (ev.dataTransfer.items.length > 1) {
+      console.log("Drop only *one* file !");
+      return;
+    }
+    // If dropped items aren't files, reject them
+    if (ev.dataTransfer.items[0].kind === 'file') {
+      file = ev.dataTransfer.items[0].getAsFile();
+    }    
+  } else {
+    // Use DataTransfer interface to access the file(s)
+    if (ev.dataTransfer.files.length > 1) {
+      console.log("Drop only *one* file !");
+      return;
+    }
+    file = ev.dataTransfer.files[0];
+  }
+  console.log('File name = ' + file.name);
+  saveMultipleGamePlays(file);
+}
+
+function fileDragOverHandler(ev) {
+  //console.log('File(s) in drop zone');
+  // Prevent default behavior (Prevent file from being opened)
+  ev.preventDefault();
 }
