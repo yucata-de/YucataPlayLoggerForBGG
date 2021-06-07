@@ -252,16 +252,6 @@
     tmpDiv=document.createElement('div');
     tmpHTML= '<div id="closeButton" style="position:absolute;top:-2px;right:0px;">'
               +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();BRlogMain.parentNode.removeChild(BRlogMain);}" style="border-bottom:2px solid blue;border-left:2px solid blue;padding:0px 10px;border-bottom-left-radius:5px;border-top-right-radius:15px;background-color:lightGrey;font-size:large;font-weight:900;color:red;">X</a>'
-            +'</div>'
-            +'<div style="position:absolute;top:60px;right:5px;">'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{showSettingsPane(\'button\');}" id="BRshowHideBtn">'
-                +'<i class="fa_SP fa_SP-cog fa_SP-2x" style="color: rgb(249, 138, 59);"></i>'
-              +'</a>'
-            +'</div>'
-            +'<div style="position:absolute;top:150px;right:17px;">'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{showPlaysPane(\'button\');}" id="BRplaysBtn">'
-                +'<span class="fa_SP-stack"><i class="fa_SP fa_SP-stack-2x fa_SP-logbook03" style="color: white; font-size: 3.2em; transform: translate(-1px, -6px);"></i><i style="color: black; font-size: 1.5em;" class="fa_SP fa_SP-stack-2x fa_SP-meeple-book"></i></span>'
-              +'</a>'
             +'</div>';
     tmpDiv.innerHTML+=tmpHTML;
     BRlogDiv.appendChild(tmpDiv);
@@ -289,198 +279,8 @@
     
     var tmpDiv=document.createElement('div');
     var tmpHTML='<div style="display:table;">'
-      +'<div style="display:table-row;">'
-        +'<div id="SPLU.DateField" class="BRcells" style="width:auto;">'
-          +'<div style="display:table;">'
-            +'<div style="display:table-row;">'
-              +'<div style="display:inline;">'
-                +'<input id="playdate99" type="hidden" value="'+SPLUtoday+'" name="playdate"/>'
-                +'<input id="SPLUplayDateInput" tabindex="10" style="width:75px;" type="text" oninput="highlightDayButton();" onkeyup="parseDate(this,document.getElementById(\'playdate99\'),document.getElementById(\'playdatestatus99\') );" value="'+SPLUtoday+'" autocomplete="off" name="dateinput"/>'
-              +'</div>'
-              +'<div id="playdatestatus99" class="sf" style="font-style:italic; font-size:0;display:inline;">'
-                +'<span class="fa_SP-stack"><i style="color: white; font-size: 1em; transform: translate(0px, 2px);" class="fa_SP fa_SP-stack-2x fa_SP-square"></i><i style="color: rgb(13, 138, 13); font-size: 1.3em;" class="fa_SP fa_SP-stack-2x fa_SP-check-circle"></i></span>'+SPLUtoday
-              +'</div>'
-              +'<div id="SPLUdatePickerTrigger" style="display:inline;">'
-                +'<span style="transform: translate(-2px, 3px);" class="fa_SP-stack"><i style="color: rgb(246, 227, 209); font-size: 1.8em;" class="fa_SP fa_SP-stack-2x fa_SP-square-sharp"></i><i style="color: rgb(96, 4, 4); font-size: 1.2em;" class="fa_SP fa_SP-stack-2x fa_SP-calendar"></i></span>'
-              +'</div>'
-            +'</div>'
-            +'<div style="display:table-row;">'
-              +'<div style="display:table-cell;font-size:x-small;padding-top:7px;">'
-                +'<a href="javascript:{void(0);}" id="SPLUbuttonDayBefore" onClick="javascript:{setDateField(\''+SPLUdateDayBefore+'\');}">'+daybeforeText+'</a>'
-                +'|'
-                +'<a href="javascript:{void(0);}" id="SPLUbuttonYesterday" onClick="javascript:{setDateField(\''+SPLUdateYesterday+'\');}">'+yesterdayText+'</a>'
-                +'|'
-                +'<a href="javascript:{void(0);}" id="SPLUbuttonToday" onClick="javascript:{setDateField(\''+SPLUdateToday+'\');}">'+todayText+'</a>'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells" style="padding-right:20px;">'
-          +'<div id="SPLU.QuantityField" style="margin-bottom:5px;">'
-            +'<span style="font-size:0.8em; font-weight: normal;">'+SPLUi18n.MainQuantity+': </span>'
-            +'<input type="text" id="quickplay_quantity99" name="quantity" value="1" tabindex="30" style="width: 20px;"/>'
-          +'</div>'
-          +'<div id="SPLU.DurationField" style="">'
-            +'<span style="font-size:0.8em; font-weight: normal;">'+SPLUi18n.MainDuration+': </span>'
-            +'<input type="text" id="quickplay_duration99" name="length" value="" tabindex="40" style="width: 20px;"/>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells" style="padding-right:20px;position:relative;width:90px;">'
-          +'<div id="SPLU.IncompleteField" style="position:absolute;top:5px;right:0px;padding-right:10px;">'
-            +'<label style="font-size:0.8em; font-weight: normal;">'+SPLUi18n.MainIncomplete+': '
-              +'<input type="checkbox" id="incomplete" name="incomplete" value="1" tabindex="45" />'
-            +'</label>'
-          +'</div>'
-          +'<div id="SPLU.NoWinStatsField" style="position:absolute;top:25px;right:0px;padding-right:10px;">'
-            +'<label style="font-size:0.8em; font-weight: normal;">'+SPLUi18n.MainNoWinStats+': '
-              +'<input type="checkbox" id="nowinstats" name="nowinstats" value="1" tabindex="47" />'
-            +'</label>'
-          +'</div>'
-          +'<div id="SPLU.TwitterField" style="position:absolute;top:45px;right:0px;padding-right:10px;">'
-            +'<label style="font-size:0.8em; font-weight: normal;">'+SPLUi18n.MainTweetThis+': '
-              +'<input type="checkbox" id="twitter" name="twitter" value="1" tabindex="49" onClick="javascript:{setTwitterIcons();}"/>'
-            +'</label>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div id="SPLU.LocationField" style="width:275px;">'
-            +'<div id="SPLU.fakeLocationBox" style="width:200px; display:inline-block; -moz-appearance:textfield; -webkit-appearance:textfield;">'
-              +'<input type="text" placeholder="'+SPLUi18n.MainPlaceholderLocation+'" id="SPLU_PlayedAt" onFocus="javascript:{this.select();}" onblur="javascript:{window.setTimeout(function(){document.getElementById(\'SPLUsearchLocationsResultsDIV\').style.display=\'none\';},100);}" onkeydown="SPLUsearchLocationDelay(event);" tabindex="20" name="location" style="width: 175px; border:none;"/>'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{saveLocation();}" style="vertical-align:middle; position: absolute;" id="SPLU.SaveLocationButton"><span class="fa_SP-stack"><i class="fa_SP fa_SP-stack-2x fa_SP-floppy2" style="font-size: 1.3em; color: black; vertical-align: middle; transform: translate(0px, 2px);"></i></span></a>'
-            +'</div>'
-            +'<div id="SPLUsearchLocationsResultsDIV" style="background-color: rgb(255, 255, 255); position: absolute; padding: 5px; z-index: 1579; margin-right: 12px; min-width: 130px; display:none;"></div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{showHideLocations();}" id="BRlocsBtn" style="padding-left:1px; vertical-align:middle;"><span id="SPLU.LocationButtonIconCollapse" style="display:inline-block;"><i class="fa_SP fa_SP-caret-up display:block" style="color: black; font-size: 2em; transform: translate(1px, 4px);"></i></span><span id="SPLU.LocationButtonIconExpand" style="display:none;"><i class="fa_SP fa_SP-caret-down display:block" style="color: black; font-size: 2em; transform: translate(1px, 4px);"></i></span></a>'
-            +'<div style="display:inline-block; position:absolute; padding-top:2px;padding-left:4px;">'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{showLocationsPane(\'button\');}" id="showLocationsPaneBtn">'
-                +'<span class="fa_SP-stack">'
-                  +'<i class="fa_SP fa_SP-bars fa_SP-stack-2x fa_SP-pull-right" style="color: rgb(110, 104, 104);font-size:1.5em;"></i>'
-                  +'<i class="fa_SP fa_SP-stack-2x fa_SP-pull-left" style="color: rgb(164, 223, 243); text-shadow: -1px 5px rgb(164, 223, 243);font-size:1.5em;">&#xee09;</i>'
-                  +'<i class="fa_SP fa_SP-map-marker fa_SP-stack-2x fa_SP-pull-left" style="color: rgb(211, 60, 199); text-shadow: 2px -1px rgb(164, 223, 243);font-size:1.5em;"></i>'
-                +'</span>'
-              +'</a>'
-            +'</div>'
-            +'<br/>'
-            +'<div id="SPLU.LocationList" style="">'
-              +'Loading...'
-            +'</div>'
-          +'</div>'
-        +'</div>'
       +'</div>'
     +'</div>'
-    +'<div style="display:table;">'
-      +'<div style="display:table-row;">'
-        +'<div class="BRcells">'
-          +'<div id="SPLU.CommentsField">'
-            +'<textarea id="quickplay_comments99" tabindex="50" style="width:314px; height:109px; font:99% arial,helvetica,clean,sans-serif" name="comments;" placeholder="'+SPLUi18n.MainPlaceholderComments+'";></textarea>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells" style="margin-top:5px;vertical-align:top;">'
-          +'<div id="SPLU.GameField">'
-            +'<div id="SPLU.DomainButtons">'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{setObjectType(\'boardgame\');}" id="SPLU.SelectBGG" style="padding:0px 5px;border:1px solid black;">'+SPLUi18n.MainBGG+'</a>'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{setObjectType(\'videogame\');}" id="SPLU.SelectVGG" style="padding:0px 5px;border:1px solid black;">'+SPLUi18n.MainVGG+'</a>'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{setObjectType(\'rpg\');}" id="SPLU.SelectRPG" style="padding:0px 5px;border:1px solid black; border-right:1px dotted black;">'+SPLUi18n.MainRPG+'</a>'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{setObjectType(\'rpgitem\');}" id="SPLU.SelectRPGItem" style="padding:0px 5px;border:1px solid black; border-left:1px dotted black;">'+SPLUi18n.MainRPGItem+'</a>'
-            +'</div>'
-            +'<div style="margin-top: 2px;">'
-              +'<input name="objectid" value="" id="objectid9999" type="hidden"/>'
-              +'<input style="margin:3px 0px 0px;" autocomplete="off" class="geekinput_medium" name="geekitemname" id="q546e9ffd96dfc" tabindex="60" placeholder="'+SPLUi18n.MainPlaceholderBGG+'" onClick="this.select();" onkeydown="SPLUsearchDelay();" type="text">'
-              +'<div id="SPLUsearchResultsDIV" style="display:none; background-color: rgb(255, 255, 255); position: absolute; padding: 5px; z-index: 1579; margin-right: 12px; min-width: 130px;"></div>'
-              +'<div style="float: right; margin-top: 4px;">'
-                +'<a href="javascript:{void(0);}" onClick="javascript:{showFavsPane(\'button\');}" id="favoritesGoTo" style="border:4px solid lightblue;border-radius:4px"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/choose_from_favorites.png"></a>'
-              +'</div>'
-            +'</div>'
-            +'<div id="objectiddisp546e9ffd96dfc" style="display:none;">'
-              +'ID:'
-            +'</div>'
-            +'<div id="objectname0"></div>'
-            +'<input name="objecttype" id="objecttype9999" value="thing" type="hidden">'
-          +'</div>'
-          +'<input size="12" class="geekinput_medium" id="imageid9999" name="imageid" value="" type="hidden"></input>'
-          +'<div style="display:table;">'
-            +'<div style="display:table-row;">'
-              +'<div style="display:table-cell;">'
-                +'<div id="selimage9999" style=padding-top:7px;"></div>'
-              +'</div>'
-              +'<div style="display:table-cell; vertical-align:top;">'
-                +'<div id="BRthumbButtons" style="display:none">'
-                  +'<div style="padding-bottom:5px; padding-top:7px;">'
-                    +'<a href="javascript:{void(0);}" onClick="javascript:{addFavorite(false);}" id="favoritesAddToList" style="padding:4px;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/add_to_favorites.png" border="0"></a>'
-                  +'</div>'
-                  +'<div>'
-                    +'<a javascript:{void(0);}" onClick="javascript:{SPLUgameID=document.getElementById(\'objectid9999\').value;showExpansionsPane(\'button\');}" id="expansionLoggingButton" style="padding:4px;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/log_expansion.png" border="0"></a>'
-                    +'<span id="SPLU_ExpansionsQuantity" style="padding-left: 3px;"></span>'
-                  +'</div>'
-                +'</div>'
-              +'</div>'
-              +'<div style="display:table-cell; vertical-align:top; padding-top:10px;" id="SPLU.GameStatus"></div>'
-              +'</div>'
-              +'<div style="display:table-row;">'
-                +'<div id="SPLU.GameCountStatus" style="display:table-cell; vertical-align:top;"></div>'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div style="display:table;">'
-        +'<div style="display:table-row;">'
-          +'<div class="BRcells">'
-            +SPLUi18n.MainPlayers+':<a href="javascript:{void(0);}" onClick="javascript:{showHidePlayers(false,\'reset\');}" id="SPLU.SavedNamesBtn" style="padding-left:1px;"><span id="SPLU.SavedNamesButtonIconCollapse" style="display:inline-block;"><i class="fa_SP fa_SP-caret-up display:block" style="color: black; font-size: 2em; transform: translate(1px, 6px);"></i></span><span id="SPLU.SavedNamesButtonIconExpand" style="display:none;"><i class="fa_SP fa_SP-caret-down display:block" style="color: black; font-size: 2em; transform: translate(1px, 6px);"></i></span></a>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{showPlayersPane(\'button\');}" id="showPlayersPaneBtn" style="padding-right:5px;"><span class="fa_SP-stack"><i class="fa_SP fa_SP-bars fa_SP-stack-2x fa_SP-pull-right" style="color: rgb(132, 130, 130); font-size: 1.5em;"></i><i class="fa_SP fa_SP-user fa_SP-stack-2x fa_SP-pull-left" style="color: rgb(0, 0, 0); text-shadow: 1px -1px rgb(164, 223, 243); font-size: 1.5em;"></i><i class="fa_SP fa_SP-user fa_SP-stack-2x fa_SP-pull-left" style="color: rgb(0, 0, 0); font-size: 1.5em; text-shadow: -1px -1px rgb(164, 223, 243);"></i></span></a>'
-            +'<div style="display:inline;" id="SPLU.PlayerFilters">'
-              +'<select id="SPLU.SelectFilter" onChange="javascript:{setFilter(\'choose\');}"></select>'
-            +'</div>'
-            +'<div id="SPLU.PlayerList" style="padding-top:15px 0px 3px 0px; width:450px;">'
-              +'Loading...'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div id="SPLUplayerRows" style="display:table; padding-bottom:15px;">'
-        +'<div style="display:table-header-group;">'
-          +'<div class="SPLUplayerCells" style="width:25px;text-align:center;vertical-align:bottom;" id="SPLUplayerDragHeader"></div>'
-          +'<div class="SPLUplayerCells" style="width:25px;"></div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerNameColumnHeader">'
-            +'<div id="SPLU.PlayerNameColumn" class="SPLUheader">'
-              +'<center>'+SPLUi18n.MainName+'</center>'
-            +'</div>'
-          +'</div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerUsernameColumnHeader">'
-            +'<div id="SPLU.PlayerUsernameColumn" class="SPLUheader">'
-              +'<center>'+SPLUi18n.MainUsername+'</center>'
-            +'</div>'
-          +'</div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerColorColumnHeader">'
-            +'<div id="SPLU.PlayerColorColumn" class="SPLUheader">'
-              +'<center>'+SPLUi18n.MainTeamColor+'</center>'
-            +'</div>'
-          +'</div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerPositionColumnHeader">'
-            +'<div id="SPLU.PlayerPositionColumn" class="SPLUheader">'
-              +'<center>'+SPLUi18n.MainStartPosition+'</center>'
-            +'</div>'
-          +'</div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerScoreColumnHeader">'
-            +'<div id="SPLU.PlayerScoreColumn" class="SPLUheader">'
-            +'<center>'+SPLUi18n.MainScore+'</center>'
-          +'</div>'
-        +'</div>'
-        +'<div class="SPLUplayerCells" id="SPLU.PlayerRatingColumnHeader">'
-          +'<div id="SPLU.PlayerRatingColumn" class="SPLUheader">'
-            +'<center>'+SPLUi18n.MainRating+'</center>'
-          +'</div>'
-        +'</div>'
-        +'<div class="SPLUplayerCells" id="SPLU.PlayerWinColumnHeader">'
-          +'<div id="SPLU.PlayerWinColumn" class="SPLUheader">'
-            +'<center>'+SPLUi18n.MainWin+'</center>'
-          +'</div>'
-        +'</div>'
-          +'<div class="SPLUplayerCells" id="SPLU.PlayerNewColumnHeader">'
-            +'<div id="SPLU.PlayerNewColumn" class="SPLUheader">'
-            +'<center>'+SPLUi18n.MainNew+'</center>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
     +'</div>'
   +'</div>'
     +'<div style="display:table; margin-top:15px;">'
@@ -492,17 +292,7 @@
         +'</div>'
         +'<div class="BRcells">'
           +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Submit Multiple Plays<i style="transform: translate(3px, 6px); font-size: 1.8em; text-align: center;" class="fa_SP fa_SP-twitter SPLUtwitterIcon"></i></a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveGamePlay(\'none\');}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="SaveGamePlayBtn" onMouseOver="makeSentence();" onMouseOut="hideSentence();"><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>'+SPLUi18n.MainButtonSubmit+'<i style="transform: translate(3px, 6px); font-size: 1.8em; text-align: center;" class="fa_SP fa_SP-twitter SPLUtwitterIcon"></i></a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveGamePlay(\'dupe\');}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="SaveGamePlayBtnDupe" onMouseOver="makeSentence();" onMouseOut="hideSentence();"><span style="" class="fa_SP-stack"><i class="fa_SP fa_SP-square fa_SP-stack-2x display:block" style="color: white; text-align: center; vertical-align: middle; font-size: 1.4em; text-shadow: 2px 1px rgb(255, 255, 255); transform: translate(0px, 4px);"></i><i class="fa_SP fa_SP-clipboard display:block fa_SP-stack-2x" style="font-size: 1.5em; vertical-align: middle; text-align: center; transform: translate(0px, 2px);"></i><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; opacity: 0.92; transform: rotate(-13deg) translate(-2px, 3px);"></i></span>'+SPLUi18n.MainButtonSubmitDuplicate+'<i style="transform: translate(3px, 6px); font-size: 1.8em; text-align: center;" class="fa_SP fa_SP-twitter SPLUtwitterIcon"></i></a>'
+            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Submit Multiple Plays</a>'
           +'</div>'
         +'</div>'
         +'<div class="BRcells" id="SPLUeditPlayDiv" style="display:none;">'
@@ -514,14 +304,6 @@
           +'<div>'
             +'<a href="javascript:{void(0);}" onClick="javascript:{deleteGamePlay();}" style="border:2px solid blue;padding:5px 5px;border-radius:5px;background-color:lightGrey; color:black;" id="DeleteGamePlayBtn";><i class="fa_SP fa_SP-trash display:block" style="text-align: center; font-size: 1.6em; vertical-align: middle; transform: translate(0px, -1px);"></i></a>'
           +'</div>'
-        +'</div>'
-        +'<div class="BRcells" id="SPLUresetFormDiv">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{clearForm(\'reset\');clearSearchResult();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="ResetFormBtn"><i class="fa_SP fa_SP-repeat display:block" style="color: red; vertical-align: middle; text-align: center; transform: translate(-3px, 0px) scaleX(-1); font-size: 1.5em; font-weight: bold;"></i></a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div id="BRresults"></div>'
         +'</div>'
         +'<div class="BRcells">'
           +'<div id="SPLUexpansionResults"></div>'
@@ -878,7 +660,7 @@
         +'<center>'+SPLUi18n.FavoritesHeader+'</center>'
         +'<br />'
         +'</span>'
-        +'<div id="SPLU.FavoritesCustomNameDiv" style="display:none;"><input style="margin-bottom: 10px; margin-left: 23px;" id="SPLU.FavoritesCustomName" type="text"><div style="display: inline;"><a style="" href="javascript:{void(0);}" onclick="javascript:{addFavorite(true);}"><span style="transform: translate(-1px, 3px);" class="fa_SP-stack"><i style="color: white; transform: translate(0px, -3px); font-size: 1.4em;" class="fa_SP fa_SP-stack-2x fa_SP-square-sharp"></i><i style="font-size: 1.3em; color: black;" class="fa_SP fa_SP-stack-2x fa_SP-floppy2"></i></span></a></div></div>'
+        +'<div id="SPLU.FavoritesCustomNameDiv" style="display:none;"><input style="margin-bottom: 10px; margin-left: 23px;" id="SPLU.FavoritesCustomName" type="text"><div style="display: inline;"><a style="" href="javascript:{void(0);}" ><span style="transform: translate(-1px, 3px);" class="fa_SP-stack"><i style="color: white; transform: translate(0px, -3px); font-size: 1.4em;" class="fa_SP fa_SP-stack-2x fa_SP-square-sharp"></i><i style="font-size: 1.3em; color: black;" class="fa_SP fa_SP-stack-2x fa_SP-floppy2"></i></span></a></div></div>'
         +'<div id="SPLU.FavoritesStatus"></div>'
         +'<div id="SPLU.FavoritesList" style="overflow-y:auto; width:220px;"></div>'
           +'<div style="margin-top:10px;"><a href="javascript:{void(0);}" onClick="javascript:{saveFavoritesOrder();}" class="SPLUbuttons" style="margin-right:6px;color:black;border:2px solid #249631">'+SPLUi18n.FavoritesOrderButtonSave+'</a>'
@@ -950,8 +732,8 @@
         +'</span>'
         +'<div id="SPLU.LocationsList" style="overflow-y:auto;"></div>'
         +'<div style="padding-top:10px;display:inline;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{saveLocations();}" class="SPLUbuttons" style="margin-right:6px;color:black;border:2px solid #249631">'+SPLUi18n.LocationsButtonSave+'</a>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{addLocation();}" class="SPLUbuttons" style="color:black; border:2px solid #249631">'+SPLUi18n.LocationsButtonNew+'</a>'
+        +'<a href="javascript:{void(0);}" class="SPLUbuttons" style="margin-right:6px;color:black;border:2px solid #249631">'+SPLUi18n.LocationsButtonSave+'</a>'
+        +'<a href="javascript:{void(0);}" class="SPLUbuttons" style="color:black; border:2px solid #249631">'+SPLUi18n.LocationsButtonNew+'</a>'
         +'</div>'
         +'<div id="SPLU.LocationsStatus" style="display:inline;padding-left:5px;"></div>';
     tmpDiv.innerHTML+=tmpHTML;
@@ -1205,33 +987,6 @@
     BRlogMain.appendChild(BRlogRow);
     document.getElementById('SPLUmain').insertBefore(BRlogMain,document.getElementById('SPLUmain').firstChild);
 
-    //Set up PopText for buttons and such
-    listenerForPopText("SaveGamePlayBtn",SPLUi18n.PopupButtonSubmit);
-    listenerForPopText("SaveGamePlayBtnDupe",SPLUi18n.PopupButtonSubmitDuplicate);
-    listenerForPopText("favoritesGoTo",SPLUi18n.PopupButtonFavorites);
-    listenerForPopText("favoritesAddToList",SPLUi18n.PopupButtonAddFavorite);
-    listenerForPopText("favoritesCustomAddToList",SPLUi18n.PopupButtonAddFavorite2);
-    listenerForPopText("expansionLoggingButton",SPLUi18n.PopupButtonExpansions);
-    listenerForPopText("ResetSettingsOption",SPLUi18n.PopupTextSettingsReset);
-    listenerForPopText("SPLU.DateFieldReset",SPLUi18n.PopupFieldSettingsResetDate);
-    listenerForPopText("hideSettingsButton",SPLUi18n.PopupButtonShutPane);
-    listenerForPopText("hideExpansionsButton",SPLUi18n.PopupButtonShutPane);
-    listenerForPopText("hideFavsButton",SPLUi18n.PopupButtonShutPane);
-    listenerForPopText("SPLU.SettingsReset",SPLUi18n.PopupButtonResetAllSettings);
-    listenerForPopText("showPlayersPaneBtn",SPLUi18n.PopupButtonEditPlayers);
-    listenerForPopText("showLocationsPaneBtn",SPLUi18n.PopupButtonEditLocations);
-    listenerForPopText("SPLU.SaveLocationButton",SPLUi18n.PopupButtonSaveLocation);
-    listenerForPopText("BRplaysBtn",SPLUi18n.PopupButtonViewPlays);
-    listenerForPopText("ResetFormBtn",SPLUi18n.PopupButtonResetForm);
-    listenerForPopText("DeleteGamePlayBtn",SPLUi18n.PopupButtonDeletePlay);
-    listenerForPopText("copymodeicon",SPLUi18n.PopupTabMultiCopy);
-    listenerForPopText("CopyPlaysBtn",SPLUi18n.PopupButtonCopyPlays);
-    listenerForPopText("CopyPlaysSelectAllBtn",SPLUi18n.PopupButtonSelectAllPlays);
-    listenerForPopText("CopyPlaysDeselectAllBtn",SPLUi18n.PopupButtonDeselectAllPlays);
-    //listenerForPopText("statisticsicon","Basic Stats");
-    //listenerForPopText("filtericon","Apply Filter to These Results");
-    //listenerForPopText("floppydiskicon","Remember This Player");
-
     finalSetup();
     //End initSPLU()
   }
@@ -1243,9 +998,7 @@
   }
   
   function finalSetup(){
-    highlightDayButton();
-    loadPlayers();  
-    loadLocations();
+    loadPlayers();
     for (var key in SPLU.Settings) {
       if (SPLU.Settings.hasOwnProperty(key)) {
         try{
@@ -1318,69 +1071,17 @@
     if(window.location.host.slice(-11)=="rpggeek.com"){
       setObjectType("rpgitem");
     }
-    document.getElementById('quickplay_comments99').style.width=SPLU.Settings['CommentsField']['Width'];
-    document.getElementById('quickplay_comments99').style.height=SPLU.Settings['CommentsField']['Height'];
     
     getGameID();
-    loadFilters();
     loadGroups();
     loadDefaultPlayersList();
     loadDefaultLocationList();
     loadFavoritesThumbSizeList();
-    
-    //New Pikaday calendar
-    //if(Pikaday===undefined){
-      window.setTimeout(function(){addCalendar();},1500);
-    //}else{
-    //  addCalendar();
-    //}
-        
-    //SPLUcalendar = new YAHOO.widget.Calendar('SPLU.Calendar');
-    //var tmp=new Date();
-    //var tmp2=new Date();
-    //tmp2.setMinutes(tmp.getMinutes()-tmp.getTimezoneOffset())
-    //SPLUcalendar.cfg.setProperty("maxdate",tmp2);
-    //SPLUcalendar.selectEvent.subscribe(function(){tmp3=new Date();selectedDate=new Date(SPLUcalendar.getSelectedDates()[0].setMinutes(SPLUcalendar.getSelectedDates()[0].getMinutes()-tmp3.getTimezoneOffset()));setDateField(selectedDate.toISOString().slice(0,selectedDate.toISOString().indexOf("T")));showHideCalendar();});
-    document.getElementById('q546e9ffd96dfc').value=getGameTitle();
-    
-    var tmpDiv=document.createElement('span');
-    tmpDiv.style.display="none";
-    tmpDiv.style.textAlign="center";
-    tmpDiv.id="SPLU.PlayerDragHeader0";
-    tmpDiv.dataset.spluplayernumber="0";
-    tmpDiv.innerHTML='<span style=""><span style="transform: scaleX(-1); top:7px;" class="fa_SP-stack"><i style="font-size: 1.3em;" class="fa_SP fa_SP-stack-2x fa_SP-drag-row"></i></span></span>';
-    document.getElementById('SPLUplayerDragHeader').appendChild(tmpDiv);
+
+    window.setTimeout(function(){addCalendar();},1500);
 
     setPlayers("reset");
     setLocation("reset");
-    
-    window.setTimeout(function(){ 
-      PlayerRowSort = Sortable.create(document.getElementById('SPLUplayerRows'), {
-        filter: 'input',
-        preventOnFilter: false,
-        animation: 150,
-        group: "SPLUplayerRows"
-      })
-    }, 1000);
-
-  }
-  
-  function highlightDayButton(){
-    buttonToday=document.getElementById('SPLUbuttonToday');
-    buttonYesterday=document.getElementById('SPLUbuttonYesterday');
-    buttonDayBefore=document.getElementById('SPLUbuttonDayBefore');
-    buttonToday.style.backgroundColor="";
-    buttonYesterday.style.backgroundColor="";
-    buttonDayBefore.style.backgroundColor="";
-    if(document.getElementById('SPLUplayDateInput').value==SPLUdateToday){
-      buttonToday.style.backgroundColor="yellow";
-    }
-    if(document.getElementById('SPLUplayDateInput').value==SPLUdateYesterday){
-      buttonYesterday.style.backgroundColor="yellow";
-    }
-    if(document.getElementById('SPLUplayDateInput').value==SPLUdateDayBefore){
-      buttonDayBefore.style.backgroundColor="yellow";
-    }
   }
   
   function setPlayers(action){
@@ -1407,7 +1108,6 @@
     tmpName=SPLU.Settings.DefaultLocation.Name;
     if(action=="reset"){
       if(tmpName=="-blank-"){
-        document.getElementById('SPLU_PlayedAt').value="";
       } else {
         if(SPLU.Settings.LocationList.Visible){
           insertLocation(tmpName,false);
@@ -1415,9 +1115,6 @@
           insertLocation(tmpName,true);
         }
       }
-    }
-    if(action=="blank"){
-      document.getElementById('SPLU_PlayedAt').value="";
     }
   }
 
@@ -1816,42 +1513,18 @@
     console.log("setObjectType("+type+");");
     SPLUexpansionsLoaded=false;
     SPLUfamilyLoaded=false;
-    var tmpGameName=document.getElementById('q546e9ffd96dfc');
-    var tmpExpButton=document.getElementById('expansionLoggingButton');
-    var tmpButtonBGG=document.getElementById('SPLU.SelectBGG');
-    var tmpButtonVGG=document.getElementById('SPLU.SelectVGG');
-    var tmpButtonRPG=document.getElementById('SPLU.SelectRPG');
-    var tmpButtonRPGitem=document.getElementById('SPLU.SelectRPGItem');
-    var tmpID=document.getElementById('objecttype9999');
-    tmpExpButton.style.display="none";
-    tmpButtonBGG.style.backgroundColor="";
-    tmpButtonVGG.style.backgroundColor="";
-    tmpButtonRPG.style.backgroundColor="";
-    tmpButtonRPGitem.style.backgroundColor="";
-    tmpID.value="thing";
     if(type=="boardgame"){
       SPLUobjecttype="boardgame";
-      tmpGameName.placeholder=SPLUi18n.MainPlaceholderBGG;
-      tmpExpButton.style.display="block";
-      tmpButtonBGG.style.backgroundColor="#F8DF24";
     }
     if(type=="videogame"){
       SPLUobjecttype="videogame";
-      tmpGameName.placeholder=SPLUi18n.MainPlaceholderVGG;
-      tmpButtonVGG.style.backgroundColor="#F8DF24";
     }
     if(type=="rpg"){
       SPLUobjecttype="rpg";
-      tmpGameName.placeholder=SPLUi18n.MainPlaceholderRPG;
-      tmpButtonRPG.style.backgroundColor="#F8DF24";
-      tmpID.value="family";
     }
     if(type=="rpgitem"){
       SPLUobjecttype="rpgitem";
-      tmpGameName.placeholder=SPLUi18n.MainPlaceholderRPGItem;
-      tmpButtonRPGitem.style.backgroundColor="#F8DF24";
     }
-    document.getElementById("SPLU.GameCountStatus").innerHTML=``;
     clearSearchResult();
   }
 
@@ -1932,7 +1605,6 @@
       }
       if(metas[i].getAttribute("name")=="og:url"){
         SPLUgameID=metas[i].getAttribute("content").substring((metas[i].getAttribute("content").lastIndexOf("/")+1));
-        document.getElementById('objectid9999').value=SPLUgameID;
         document.getElementById('selimage9999').innerHTML=thumbDiv;
         return SPLUgameID;
       }
@@ -1958,32 +1630,6 @@
     }
     document.getElementById(id).childNodes[child].setAttribute("target","_blank");
   }
-  
-  function saveLocation(){
-    if(document.getElementById('SPLU_PlayedAt').value!=""){
-      var tmpLoc=0;
-      for(var key in SPLU.Locations){
-        if (SPLU.Locations.hasOwnProperty(key)) {
-          tmpLoc++;
-        }
-      }
-      SPLU.Locations[tmpLoc]={"Name":encodeURIComponent(document.getElementById('SPLU_PlayedAt').value)};
-      SPLUremote.Locations=SPLU.Locations;
-      saveSooty("BRresults",SPLUi18n.StatusThinking,SPLUi18n.StatusSaved,function(){
-        loadLocations();
-      });
-    }
-  }
-  
-  function loadLocations(){
-    var tmpDiv=document.getElementById('SPLU.LocationList');
-    tmpDiv.innerHTML="";
-    for(var key in SPLU.Locations){
-      if (SPLU.Locations.hasOwnProperty(key)) {
-        tmpDiv.innerHTML+='<div style="padding: 5px 2px 0px 0px; float: left;"><a href="javascript:{void(0);}" onClick="javascript:{insertLocation('+key+',true);}" onMouseDown="javascript:{this.style.backgroundColor=\'#eff708\';}" onMouseUp="javascript:{this.style.backgroundColor=\'#A4DFF3\';}" style="border:1px dotted green;padding:0px 2px;">'+decodeURIComponent(SPLU.Locations[key].Name)+'</a></div>';
-      }
-    }
-  }
     
   function savePlayer(id){
     if(document.getElementsByName('players['+id+'][name]')[0].value!=""||document.getElementsByName('players['+id+'][username]')[0].value!=""){
@@ -2005,8 +1651,6 @@
   }
   
   function loadPlayers(){
-    var BRplayersDiv=document.getElementById('SPLU.PlayerList');
-    BRplayersDiv.innerHTML="";
     var players=[];
     // if(SPLU.Settings.SortPlayers.Order=="Alpha"){
       // players=Object.keys(SPLU.Players).sort();
@@ -2029,11 +1673,9 @@
           if(SPLU.Players[players[key]].Name==""){
             BRtmpName=decodeURIComponent(SPLU.Players[players[key]].Username);
           }
-          BRplayersDiv.innerHTML+='<div style="padding: 5px 2px 0px 0px; float: left;"><a href="javascript:{void(0);}" onClick="javascript:{insertPlayer(\''+players[key]+'\');}" onMouseDown="javascript:{this.style.backgroundColor=\'#eff708\';}" onMouseUp="javascript:{this.style.backgroundColor=\'#A4DFF3\';}" style="border:1px dotted green;padding:0px 2px;">'+BRtmpName+'</a></div>';
         }
       }
-      BRplayersDiv.innerHTML+='<div style="padding: 5px 2px 0px 0px; float: left;"><a href="javascript:{void(0);}" onClick="javascript:{insertPlayer(-1);}" onMouseDown="javascript:{this.style.backgroundColor=\'#eff708\';}" onMouseUp="javascript:{this.style.backgroundColor=\'#A4DFF3\';}" style="border:1px dotted;padding:0px 2px;">'+SPLUi18n.MainOther+'</a></div>';
-    }
+          }
     if(SPLU.Settings["PlayerGroups"].Visible){
       var groups=[];
       if(SPLU.Settings.SortGroups.Order=="Alpha"){
@@ -2043,9 +1685,6 @@
       }
       for(key=0;key<groups.length;key++){
         BRtmpName=decodeURIComponent(groups[key]);
-        if(SPLUcurrentFilter=="All" || SPLUcurrentFilter=="Groups" || SPLU.Filters[SPLUcurrentFilter].indexOf("group-"+groups[key])!=-1){
-          BRplayersDiv.innerHTML+='<div style="padding: 5px 2px 0px 0px; float: left;"><a href="javascript:{void(0);}" onClick="javascript:{insertGroup(\''+fixedEncodeURIComponent(groups[key])+'\');}" onMouseDown="javascript:{this.style.backgroundColor=\'#eff708\';}" onMouseUp="javascript:{this.style.backgroundColor=\'#A4DFF3\';}" style="border:1px solid black;padding:0px 2px;">'+BRtmpName+'</a></div>';
-        }
       }
     }
   }
@@ -2075,7 +1714,6 @@
         checks[i].checked=false;
       }
     }
-    loadFilters();
     loadPlayers();
   }
   
@@ -2090,39 +1728,6 @@
       }
     }
     loadGroups();
-  }
-  
-  function loadFilters(){
-    var select=document.getElementById('SPLU.SelectFilter');
-    var select2=document.getElementById('SPLU.FiltersSubSelect');
-    select.options.length=0;
-    select2.options.length=0;
-    if(SPLUcurrentFilter=="All"){
-      select.options[0]=new Option(SPLUi18n.MainAll, "All", true, true);
-      select2.options[0]=new Option("---", "---", true, true);
-      select.options[1]=new Option(SPLUi18n.MainAllGroups, "Groups", true, false);
-    }else if(SPLUcurrentFilter=="Groups"){
-      select.options[0]=new Option(SPLUi18n.MainAll, "All", true, false);
-      select2.options[0]=new Option("---", "---", true, false);
-      select.options[1]=new Option(SPLUi18n.MainAllGroups, "Groups", true, true);
-    }else{
-      select.options[0]=new Option(SPLUi18n.MainAll, "All", true, false);
-      select2.options[0]=new Option("---", "---", true, false);
-      select.options[1]=new Option(SPLUi18n.MainAllGroups, "Groups", true, false);
-    }
-    var i=2;
-    for(var key in SPLU.Filters){
-      if (SPLU.Filters.hasOwnProperty(key)) {
-        if(SPLUcurrentFilter==key){
-          select.options[i]=new Option(key, key, false, true);
-          select2.options[i-1]=new Option(key, key, false, true);
-        }else{
-          select.options[i]=new Option(key, key, false, false);
-          select2.options[i-1]=new Option(key, key, false, false);
-        }
-        i++;
-      }
-    }
   }
 
   function loadGroups(){
@@ -2239,95 +1844,6 @@
     while(paddedNum.length<2){
       paddedNum="0"+paddedNum;
     }
-    var tmpDiv=document.createElement('div');
-    tmpDiv.id="SPLU.PlayerRow"+NumOfPlayers;
-    tmpDiv.style.display="table-row";
-    tmpDiv.dataset.spluplayernumber=NumOfPlayers;
-    document.getElementById('SPLUplayerRows').appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    tmpDiv.style.display="table-cell";
-    tmpDiv.style.textAlign="center";
-    tmpDiv.style.cursor="grab";
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerDragColumn"+NumOfPlayers;
-    tmpDiv.dataset.spluplayernumber=NumOfPlayers;
-    tmpDiv.innerHTML='<span style=""><span style=""><span style="transform: scaleX(-1); top:7px;" class="fa_SP-stack"><i style="font-size: 1.3em;" class="fa_SP fa_SP-stack-2x fa_SP-drag-row"></i></span></span>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-
-    var tmpDiv=document.createElement('div');
-    tmpDiv.style.display="table-cell";
-    tmpDiv.className="SPLUrows";
-    tmpDiv.innerHTML='<a href="javascript:{void(0);}" onClick="javascript:{removePlayerRow('+NumOfPlayers+');}"><span style="transform: translate(4px, 7px);" class="fa_SP-stack display:block"><i style="color: white; font-size: 1.3em; transform: translate(-2px, 1px);" class="fa_SP fa_SP-stack-2x">&#xee22;</i><i style="transform: scaleX(-1); color: red; font-size: 1.7em;" class="fa_SP fa_SP-stack-2x">&#xee21;</i></span></a>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerNameColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerNameColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][name]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="name" value="'+tmpName+'" tabindex="1'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerUsernameColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerUsernameColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][username]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="username" value="'+tmpUser+'" tabindex="2'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerColorColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerColorColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][color]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="color" value="'+tmpColor+'" tabindex="3'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerPositionColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerPositionColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][position]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="startposition" value="'+tmpStart+'" tabindex="4'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerScoreColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerScoreColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][score]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="score" value="'+tmpScore+'" tabindex="5'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerRatingColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerRatingColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="text" style="min-width:3em;margin:0px 5px;" size="1" name="players['+NumOfPlayers+'][rating]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="rating" value="'+tmpRating+'" tabindex="6'+paddedNum+'" onkeyup="setFieldWidth(this.getAttribute(\'data-spluplayerfield\'));"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerWinColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.style.textAlign="center";
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerWinColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="checkbox" name="players['+NumOfPlayers+'][win]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="win" class="SPLU.WinBox" value="1" '+tmpWin+' tabindex="7'+paddedNum+'" style="margin-bottom:2px;" onClick="javascript:{if(SPLU.Settings.WinComments.Visible){NoreenWinComment();}}"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    if(!SPLU.Settings.PlayerNewColumn.Visible){tmpDiv.style.display="none";}else{tmpDiv.style.display="table-cell";}
-    tmpDiv.style.textAlign="center";
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerNewColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<input type="checkbox" name="players['+NumOfPlayers+'][new]" data-SPLUplayerNumber="'+NumOfPlayers+'" data-SPLUplayerField="new" value="1" '+tmpNew+' tabindex="8'+paddedNum+'" style="margin-bottom:2px;"></input>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    
-    var tmpDiv=document.createElement('div');
-    tmpDiv.style.display="table-cell";
-    tmpDiv.style.textAlign="center";
-    tmpDiv.className="SPLUrows";
-    tmpDiv.id="SPLU.PlayerSaveColumn"+NumOfPlayers;
-    tmpDiv.innerHTML='<span style="padding-bottom:2px;"><a href="javascript:{void(0);}" onClick="javascript:{savePlayer('+NumOfPlayers+');}"><span style="transform: translate(-1px, 7px);" class="fa_SP-stack"><i style="color: white; transform: translate(0px, -3px); font-size: 1.4em;" class="fa_SP fa_SP-stack-2x fa_SP-square-sharp"></i><i style="font-size: 1.3em; color: black;" class="fa_SP fa_SP-stack-2x fa_SP-floppy2"></i></span></a></span>';
-    document.getElementById('SPLU.PlayerRow'+NumOfPlayers).appendChild(tmpDiv);
-    listenerForPopText("SPLU.PlayerSaveColumn"+NumOfPlayers,SPLUi18n.PopupButtonSavePlayer);
-
     if(NumOfPlayers==2){
       if(document.getElementsByName("players[1][name]")[0].value==""&&document.getElementsByName("players[1][username]")[0].value==""&&document.getElementsByName("players[1][color]")[0].value==""){
         removePlayerRow(1);
@@ -2392,108 +1908,6 @@
       PlayerRowSort.sort(PlayerRowSort.toArray().sort(function (a, b) {return a.toLowerCase().localeCompare(b.toLowerCase());}).reverse())
     }
   }
-
-
-  
-  // function handleDragClick(e){
-    // //console.log(this);
-    // if(SPLUdragDiv==-1){
-      // SPLUdragDiv=this.getAttribute('data-spluplayernumber');
-      // this.style.opacity="0.4";
-      // document.getElementById('SPLU.PlayerDragHeader0').style.display="";
-      // return;
-    // }
-    // if(SPLUdragDiv!=this.getAttribute('data-spluplayernumber')){
-      // movePlayer(SPLUdragDiv,this.getAttribute('data-spluplayernumber'));
-    // }else{
-      // this.style.opacity="1.0";
-      // document.getElementById('SPLU.PlayerDragHeader0').style.display="none";
-      // SPLUdragDiv=-1;
-    // }
-  // }
-
-  // function handleDragStart(e) {
-    // this.style.opacity = '0.4';
-    // SPLUdragSourceDiv = this;
-    // e.dataTransfer.effectAllowed = 'move';
-    // e.dataTransfer.setData('text/html', this.getAttribute('data-spluplayernumber'));
-    // document.getElementById('SPLU.PlayerDragHeader0').style.display="";
-  // }
-
-  // function handleDragOver(e) {
-    // if (e.preventDefault) {
-      // e.preventDefault();
-    // }
-    // e.dataTransfer.dropEffect = 'move';
-    // return false;
-  // }
-
-  // function handleDragEnter(e) {
-    // if(this.hasAttribute('data-spluplayernumber')){
-      // //console.log(this.getAttribute('data-spluplayernumber'));
-      // SPLUdragDiv=this.getAttribute('data-spluplayernumber')
-      // highlightPlayerRow(this.getAttribute('data-spluplayernumber'),true);
-    // }
-  // }
-
-  // function handleDragLeave(e) {
-    // if(this.hasAttribute('data-spluplayernumber')){
-      // if(SPLUdragDiv!=this.getAttribute('data-spluplayernumber')){
-        // //highlightPlayerRow(this.getAttribute('data-spluplayernumber'),false);
-      // }
-    // }
-  // }
-
-  // function handleDrop(e) {
-    // if (e.stopPropagation) {
-      // e.stopPropagation();
-    // }
-    // if (e.preventDefault) {
-      // e.preventDefault();
-    // }
-    // if (SPLUdragSourceDiv != this) {
-      // console.log(e.dataTransfer.getData('text/html')+'||'+this.getAttribute('data-spluplayernumber'));
-      // movePlayer(e.dataTransfer.getData('text/html'),this.getAttribute('data-spluplayernumber'));
-    // }
-    // document.getElementById('SPLU.PlayerDragHeader0').style.display="none";
-    // return false;
-  // }
-  
-  // function handleDragEnd(e){
-    // if (e.stopPropagation) {
-      // e.stopPropagation();
-    // }
-    // if (e.preventDefault) {
-      // e.preventDefault();
-    // }
-    // SPLUdragSourceDiv.style.opacity='1.0';
-    // highlightPlayerRow(SPLUdragDiv,false);
-    // document.getElementById('SPLU.PlayerDragHeader0').style.display="none";
-  // }
-  
-  // function highlightPlayerRow(row,highlight){
-    // console.log("highlight|"+row+"|"+highlight);
-    // tmp=document.getElementsByClassName('SPLUplayerHighlight');
-    // for(i=0;i<tmp.length;i++){
-      // tmp[i].style.backgroundColor="";
-    // }
-    // if(row==-1){
-      // return;
-    // }
-    // if(highlight){
-      // document.getElementById('SPLU.PlayerDragHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerDeleteHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerNameHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerUsernameHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerColorHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerPositionHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerScoreHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerRatingHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerWinHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerNewHighlight'+row).style.backgroundColor="red";
-      // document.getElementById('SPLU.PlayerSaveHighlight'+row).style.backgroundColor="red";
-    // }
-  // }
   
   function getWinners(){
     winboxes=document.getElementsByClassName('SPLU.WinBox');
@@ -2569,79 +1983,11 @@
     document.getElementById('SPLU.FavoritesCustomNameDiv').style.display="";
     document.getElementById('SPLU.FavoritesCustomName').value=document.getElementById('q546e9ffd96dfc').value;
   }
-  
-  function addFavorite(custom){
-    var id=document.getElementById('objectid9999').value;
-    tmp=Math.random();
-    tmpid=id+'_'+tmp.toString().slice(-4);
-    SPLU.Favorites[tmpid]={
-      "objectid":id,
-      "thumbnail":document.getElementById('SPLU.GameThumb').src,
-      "title":document.getElementById('q546e9ffd96dfc').value,
-      "sortorder":0,
-      "objecttype":SPLUobjecttype
-    };
-    if(custom){
-      SPLU.Favorites[tmpid].location=document.getElementById(('SPLU_PlayedAt')).value;
-      SPLU.Favorites[tmpid].title2=document.getElementById('SPLU.FavoritesCustomName').value;
-      document.getElementById('SPLU.FavoritesCustomNameDiv').style.display="none";
-      SPLU.Favorites[tmpid].players=[];
-      for(i=1; i<=NumOfPlayers; i++){
-        tmpPlayer={"attributes":{
-          "name":{},
-          "username":{},
-          "color":{},
-          "startposition":{},
-          "score":{},
-          "rating":{},
-          "win":{},
-          "new":{}
-        }};
-        console.log(i);
-        if(document.getElementsByName("players["+i+"][name]").length==0){
-          continue;
-        }
-        tmpPlayer.attributes.name.value=document.getElementsByName("players["+i+"][name]")[0].value;
-        tmpPlayer.attributes.username.value=document.getElementsByName("players["+i+"][username]")[0].value;
-        tmpPlayer.attributes.color.value=document.getElementsByName("players["+i+"][color]")[0].value;
-        tmpPlayer.attributes.startposition.value=document.getElementsByName("players["+i+"][position]")[0].value;
-        tmpPlayer.attributes.score.value=document.getElementsByName("players["+i+"][score]")[0].value;
-        tmpPlayer.attributes.rating.value=document.getElementsByName("players["+i+"][rating]")[0].value;
-        if(document.getElementsByName("players["+i+"][win]")[0].checked){
-          tmpPlayer.attributes.win.value=1;
-        }else{
-          tmpPlayer.attributes.win.value=0;
-        }
-        if(document.getElementsByName("players["+i+"][new]")[0].checked){
-          tmpPlayer.attributes.new.value=1;
-        }else{
-          tmpPlayer.attributes.new.value=0;
-        }
-        SPLU.Favorites[tmpid].players.push(tmpPlayer);
-      }
-      SPLU.Favorites[tmpid].expansions=[];
-      var tmpExp=document.getElementsByClassName('BRexpLogBox');
-      if(tmpExp.length>0){
-        for(i=0;i<tmpExp.length;i++){
-          if(tmpExp[i].checked){
-            SPLU.Favorites[tmpid].expansions.push({"type":tmpExp[i].getAttribute('data-tab'),"id":tmpExp[i].id,"name":tmpExp[i].getAttribute('data-SPLU-ExpName')});
-          }
-        }
-      }
-    }
-    SPLUremote.Favorites[tmpid]=SPLU.Favorites[tmpid];
-    saveSooty("SPLU.GameStatus",SPLUi18n.StatusThinking,SPLUi18n.StatusAdded,function(){
-      if (document.getElementById('BRlogFavs').style.display=="table-cell") {
-        showFavsPane("add");
-      }
-    });
-  }
     
   function chooseFavorite(id){
     console.log(id);
     setObjectType(SPLU.Favorites[id].objecttype);
     document.getElementById('SPLU_ExpansionsQuantity').innerHTML="";
-    document.getElementById('objectid9999').value=SPLU.Favorites[id].objectid;
     SPLUgameID=SPLU.Favorites[id].objectid;
     //FIX - replace thing with objecttype and finish rest of feature
     if(SPLU.Settings.FetchPlayCount.Enabled) {
@@ -2686,7 +2032,6 @@
     }
     if(SPLU.Favorites[id].location!==undefined){
       if(SPLU.Favorites[id].location!=""){
-        document.getElementById(('SPLU_PlayedAt')).value=SPLU.Favorites[id].location;
         hideLocations();
       }
     }
@@ -2890,7 +2235,6 @@
           }else{
             document.getElementById(statusID).innerHTML=statusSuccess;
           }
-          window.setTimeout(function(){ document.getElementById(statusID).innerHTML=""}, 3000);
           onloadFunction();
         }else{
           document.getElementById(statusID).innerHTML="<img style='vertical-align:bottom;padding-top:5px;' src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/alert.gif'><span style='background-color:red;color:white;font-weight:bold;'>"+SPLUi18n.StatusErrorCode+": "+responseJSON.target.status+"</span>";
@@ -2907,11 +2251,6 @@
   }
   
   function insertLocation(location, hide){
-    if(location==-1){
-      document.getElementById('SPLU_PlayedAt').value="";
-    }else{
-      document.getElementById('SPLU_PlayedAt').value=decodeURIComponent(SPLU.Locations[location].Name);
-    }
     if (hide){
       hideLocations();
     }
@@ -2934,7 +2273,7 @@
   }
 
   function SPLUsearchForLocations() {
-    var tmpText=document.getElementById('SPLU_PlayedAt').value;
+    var tmpText="";
     if (tmpText==""){
       document.getElementById('SPLUsearchLocationsResultsDIV').style.display="none";
       return;
@@ -3280,7 +2619,6 @@
     for(i=0;i<tmpExp.length;i++){
       tmpExp[i].checked=false;
     }
-    highlightDayButton();
     SPLUcurrentPlayShown="";
     SPLUprevGameID=0;
     SPLUgameID=0;
@@ -3340,7 +2678,6 @@
       dst.value=tmpDate;
       //status.innerHTML="<img src='//cf.geekdo-static.com/images/icons/silkicons/accept.png' style='position:relative; top:3px;'> "+tmpDate.toString("yyyy-MM-dd");
       status.innerHTML="<img src='//cf.geekdo-static.com/images/icons/silkicons/accept.png' style='position:relative; top:-3px;'> "+tmpDate;
-      highlightDayButton();
     }else{
       //if(src.get('value').length){
       if (src.value.length){
@@ -3373,7 +2710,6 @@
         // status.innerHTML='';
       // }
     // }
-    // highlightDayButton();
   // }
   
   function eventPlaysPlayerEnter(e){
@@ -4648,7 +3984,6 @@
     item=SPLUsearchResults[objectid];
     console.log(item);
     setObjectType(item.subtype);
-    document.getElementById('objectid9999').value=item.objectid;
     SPLUexpansionsFromFavorite=[]
     SPLUgameID=item.objectid;
     tmpImage=item.objectid;
@@ -4680,17 +4015,6 @@
   }
   
   function clearSearchResult() {
-    document.getElementById('selimage9999').innerHTML='';
-    document.getElementById('objectid9999').value='';
-    document.getElementById('q546e9ffd96dfc').value='';
-    document.getElementById('BRthumbButtons').style.display='block';
-    document.getElementById('expansionLoggingButton').style.display="none";
-    document.getElementById('BRresults').innerHTML='';
-    document.getElementById('SPLU.ExpansionPane').innerHTML='';
-    document.getElementById('SPLU.FamilyPane').innerHTML='';
-    document.getElementById('BRlogExpansions').style.display="none";
-    document.getElementById('SPLU.ExpansionsHeading').style.borderTop="2px solid blue";
-    document.getElementById('SPLU.FamilyHeading').style.borderTop="";
     SPLUexpansionsLoaded=false;
     SPLUfamilyLoaded=false;
   }
@@ -5875,7 +5199,6 @@
     setObjectType(tmpType);
     document.getElementById('expansionLoggingButton').style.display="block";
     SPLUgameID=tmpPlay.objectid;
-    document.getElementById('objectid9999').value=SPLUgameID;
     document.getElementById('q546e9ffd96dfc').value=tmpPlay.name;
     tmpURL = "/"+tmpSubType+"/"+SPLUgameID;
     getRepImage(tmpPlay.objectid, 'selimage9999', tmpURL,tmpType,tmpSubType);
@@ -6087,11 +5410,6 @@
   }
   function hidePopText(){
     document.getElementById('SPLU.popText').style.visibility="hidden";
-  }
-
-  function listenerForPopText(id,text){
-    document.getElementById(id).addEventListener("mouseover",function(e){showPopText(text,e);},false);
-    document.getElementById(id).addEventListener("mouseout",function(){hidePopText();},false);
   }
   
   function saveExpansionQuantity(){
@@ -6473,20 +5791,6 @@
       updateFavoriteThumbs(SPLU.Settings.Favorites.ThumbSize);
       // old_thumbs = false;
     // }
-    FLsort = Sortable.create(document.getElementById('FavoritesGrid'), {
-      group: "SPLUFavoritesList",
-    }) 
-    if (SPLU.FavoritesOrder!==undefined){
-      //Sort the favorites using the saved settings
-      console.log("Sorting Favs using saved settings.");
-      FLsort.options.dataIdAttr="data-id";
-      FLsort.sort(SPLU.FavoritesOrder);
-    } else {
-      //Load the current unsorted favorites in to the settings, but don't save
-      console.log("No Favs sort order saved, not sorting.");
-      FLsort.options.dataIdAttr="data-id";
-      SPLU.FavoritesOrder=FLsort.toArray();
-    }
   }
 
   function saveFavoritesOrder(){
@@ -6647,7 +5951,6 @@
     }
     SPLUremote.Locations=SPLU.Locations;
     saveSooty("SPLU.LocationsStatus",SPLUi18n.StatusThinking,SPLUi18n.StatusSaved,function(){
-      loadLocations();
       showLocationsPane("save");
     });
   }
@@ -6891,7 +6194,6 @@
     if(filter.value!=""){
       SPLU.Filters[filter.value]=[];
       SPLUcurrentFilter=filter.value;
-      loadFilters();
       loadPlayers();
       var checks=document.getElementsByName('SPLUfilterChecks');
       for(i=0;i<checks.length;i++){
