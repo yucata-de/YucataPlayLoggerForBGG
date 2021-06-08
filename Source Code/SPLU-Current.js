@@ -29,7 +29,14 @@
       // Load styles:
       var style=document.createElement('style');
       style.type='text/css';
-      style.innerHTML='.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }';
+      style.innerHTML =
+        '.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }' +
+        '#log_area { resize: both; overflow: auto; background-color: #FFF; padding: 0.4em; }' +
+        '.log_entry_type { color: black;}' +
+        '.log_entry_type--info { color: blue;}' +
+        '.log_entry_type--ok { color: green;}' +
+        '.log_entry_type--warning { color: yellow; background-color: grey;}' +
+        '.log_entry_type--error { color: red;}';
       document.getElementsByTagName('head')[0].appendChild(style);
     }
     
@@ -321,8 +328,9 @@
       +'</div>'
 
       +'<div>'
-        +'<textarea id="log_area" readonly rows="5" cols="68" placeholder="Either drop your file with the yucata plays into to box above or select it via the file selector and then click the button!">'
-        +'</textarea>'
+        +'<div id="log_area">'
+        + '<span id="log__placeholder">Either drop your file with the yucata plays into to box above or select it via<br>the file selector and then click the button!</span>'
+        +'</div>'
       +'</div>'
 
     +'</div>'
@@ -6941,8 +6949,18 @@ var LOG_ENTRY_TYPE = {
   ERROR: 3
 };
 function log(txt, logEntryType) {
+  var placeholder = document.getElementById('log__placeholder');
+  if (placeholder) {
+    placeholder.parentNode.removeChild(placeholder);
+  }
   var log_area = document.getElementById("log_area");
-  log_area.value += (log_area.value === '' ? '' : '\n') + txt;
+  var elem = document.createElement('div');
+  elem.innerHTML += txt;
+  elem.classList.add('log_entry_type');
+  if (logEntryType !== undefined) {
+    elem.classList.add(['log_entry_type--info', 'log_entry_type--ok', 'log_entry_type--warning', 'log_entry_type--error'][logEntryType]);
+  }
+  log_area.append(elem);
 }
 function log_startProcessing(file) {
   log('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...');
