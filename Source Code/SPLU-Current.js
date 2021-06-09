@@ -30,7 +30,10 @@
       var style=document.createElement('style');
       style.type='text/css';
       style.innerHTML =
-        '.file_drop_zone { background-color: lightgrey; border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }' +
+        '.file_drop_zone { background-color: lightgrey; border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 0.5em; font-size: 2em; }' +
+        '.progress_indicator { position: relative; overflow: hidden; margin-bottom: 1em; width: 360px; height: 10px; }' +
+        '#progress_indicator__progress { position: absolute; background-color: green; width: 360px; height: 10px; right: 100% }' +
+        '.progress_indicator__border { position: absolute; border: 3px solid black; width: 360px; height: 10px; }' +
         '#log_area { resize: both; overflow: auto; background-color: #FFF; padding: 0.4em; }' +
         '.log_entry_type { color: black;}' +
         '.log_entry_type--info { color: blue;}' +
@@ -299,6 +302,11 @@
 
       +'<div>'
         +'<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">Yucata Play File Drop Zone</div>'
+      +'</div>'
+
+      +'<div class="progress_indicator">'
+        +'<div id="progress_indicator__progress"></div>'
+        +'<div class="progress_indicator__border"></div>'
       +'</div>'
 
       +'<div>'
@@ -6353,7 +6361,7 @@ function saveMultipleGamePlays(file) {
         } else {
           // Continue:
           var logEntry = getLogEntry("Reading all your BGG play logs (to prevent double log creation) ... ");
-          progressIndicatorSpan = getProgressIndicatorSpan('read_bgg_play_logs');
+          progressIndicatorSpan = getProgressIndicatorCharSpan('read_bgg_play_logs');
           logEntry.appendChild(progressIndicatorSpan);
           addToLog(logEntry);
           getOldPlaysNextPage();
@@ -6390,8 +6398,10 @@ function saveMultipleGamePlays(file) {
     if (xhr.readyState === 4) {
       // Parse the XML response:
       var res = parseXml(xhr.responseText);
+      incrementProgressIndicator(100 * Number(res.childNodes[0].getAttribute('page')) / Number(res.childNodes[0].getAttribute('total')));
       if (res.childNodes[0].childNodes.length === 1) {
         // Last (empty) page received
+        incrementProgressIndicator(100);
         if (!file) {
           var x = document.getElementById("saveMultipleGamePlaysUpload");
           var txt ='';
@@ -6453,7 +6463,7 @@ function saveMultipleGamePlays(file) {
         }
         iPage++;
         iTooManyRequestsError++;
-        incrementProgressIndicatorSpan(progressIndicatorSpan);
+        incrementProgressIndicatorCharSpan(progressIndicatorSpan);
         getOldPlaysNextPage();
       }
     }
@@ -6974,13 +6984,17 @@ function log_startProcessing(file) {
   addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
 }
 var PROGRESS_INDICATOR_CHAR = ['/', '-', '\\', '|', ''];
-function getProgressIndicatorSpan(sType) {
+function getProgressIndicatorCharSpan(sType) {
   var result = document.createElement('span');
   result.classList.add('progress_indicator_span--' + sType);
   result.innerHTML = '/';
   return result;
 }
-function incrementProgressIndicatorSpan(elem) {
+function incrementProgressIndicatorCharSpan(elem) {
   var currIdx = PROGRESS_INDICATOR_CHAR.indexOf(elem.innerHTML);
   elem.innerHTML = PROGRESS_INDICATOR_CHAR[currIdx + 1];
+}
+function incrementProgressIndicator(percent) {
+  var elem = document.getElementById("progress_indicator__progress");
+  elem.style.right = (100 - percent) + "%";
 }
