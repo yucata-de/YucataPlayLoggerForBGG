@@ -6520,14 +6520,22 @@ function saveMultipleGamePlays(file) {
       aPlaydata.push([ 'objectid', iBggGameId ]);
       aPlaydata.push([ 'objecttype', 'thing' ]);
       aPlaydata.push([ 'comments', 'https://www.yucata.de/en/Game/' + oYucataPlay.GameTypeName + '/' + oYucataPlay.GameId ]);
-      saveNewBggPlay(aPlaydata, oldYucataGameIdsIndex);
+      var aUserNames = [];
+      oYucataPlay.Opponents.forEach(function(opponent, opponentIdx) {
+        aUserNames.push(opponent.Login);
+      });
+      saveNewBggPlay(aPlaydata, aUserNames, oldYucataGameIdsIndex);
     }
   }
 
-  function saveNewBggPlay(aPlaydata, oldYucataGameIdsIndex) {
+  function saveNewBggPlay(aPlaydata, aUserNames, oldYucataGameIdsIndex) {
     var querystring = "";
     aPlaydata.forEach(function(dataTuple, dataTupleIdx){
       querystring += '&' + dataTuple[0] + '=' + encodeURIComponent(dataTuple[1]);
+    });
+    aUserNames.forEach(function(userName, userNameIdx){
+      querystring += '&players[' + (userNameIdx + 1) + '][name]=' + encodeURIComponent(userName);
+      querystring += '&players[' + (userNameIdx + 1) + '][username]=' + encodeURIComponent(userName);
     });
     xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","/geekplay.php", true);
@@ -6538,7 +6546,7 @@ function saveMultipleGamePlays(file) {
         if (doStop !== true) {
           saveNewGamePlays(oldYucataGameIdsIndex + 1);
         } else {
-          doStop = false
+          doStop = false;
         }
       }
     };
