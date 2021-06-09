@@ -6367,7 +6367,7 @@ function saveMultipleGamePlays(file) {
           throw new Error("You aren't logged in.");
         } else {
           // Continue:
-          addToLog(getLogEntry("Reading all your BGG play logs (to prevent double log creation) ... "));
+          addToLog(getLogEntry("Reading all your BGG play logs (to prevent the creation of double log entries) ... "));
           getOldPlaysNextPage();
         }
       } else {
@@ -6488,6 +6488,8 @@ function saveMultipleGamePlays(file) {
   }
   function saveNewGamePlays(oldYucataGameIdsIndex) {
     if (oldYucataGameIdsIndex >= yucataPlays.length) {
+      log_finishProcessing(file);
+      stopProcessingButtonHide();
       return;
     }
     incrementActivityIndicator();
@@ -7032,7 +7034,10 @@ function addToLog(elem) {
   log_area.prepend(elem);
 }
 function log_startProcessing(file) {
-  addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
+  addToLog(getLogEntry('Start processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
+}
+function log_finishProcessing(file) {
+  addToLog(getLogEntry('Finished processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
 }
 var PROGRESS_INDICATOR_CHAR = ['/', '-', '&#92;', '|', ''];
 function incrementActivityIndicator() {
