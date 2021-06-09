@@ -6977,7 +6977,6 @@ function fileDropHandler(ev) {
     }
     file = ev.dataTransfer.files[0];
   }
-  log_startProcessing(file);
   saveMultipleGamePlays(file);
 }
 
