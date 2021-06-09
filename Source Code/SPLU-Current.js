@@ -30,7 +30,7 @@
       var style=document.createElement('style');
       style.type='text/css';
       style.innerHTML =
-        '.file_drop_zone { border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }' +
+        '.file_drop_zone { background-color: lightgrey; border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 1em; font-size: 2em; }' +
         '#log_area { resize: both; overflow: auto; background-color: #FFF; padding: 0.4em; }' +
         '.log_entry_type { color: black;}' +
         '.log_entry_type--info { color: blue;}' +
