@@ -6496,10 +6496,18 @@ function saveMultipleGamePlays(file) {
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
       addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
-      setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
+      if (doStop !== true) {
+        setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
+      } else {
+        doStop = false
+      }
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
       addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
-      setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
+      if (doStop !== true) {
+        setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
+      } else {
+        doStop = false
+      }
     } else {
       addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
       var aPlaydata = [];
