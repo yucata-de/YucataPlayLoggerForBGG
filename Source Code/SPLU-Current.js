@@ -6495,13 +6495,13 @@ function saveMultipleGamePlays(file) {
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
-      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
+      addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
       setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
-      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
+      addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
       setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
     } else {
-      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
+      addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
       var aPlaydata = [];
       aPlaydata.push([ 'playdate', getDateString(new Date(Number(oYucataPlay.FinishedOn.slice(6, -2)))) ]);
       aPlaydata.push([ 'dateinput', getDateString(new Date()) ]);
@@ -6983,6 +6983,30 @@ var LOG_ENTRY_TYPE = {
   WARNING: 2,
   ERROR: 3
 };
+function getYucataPlayLogEntry(yucataGamePlayId, GameTypeName, txt, logEntryType) {
+  var placeholder = document.getElementById('log__placeholder');
+  if (placeholder) {
+    placeholder.parentNode.removeChild(placeholder);
+  }
+  var span;
+  var log_area = document.getElementById("log_area");
+  var result = document.createElement('div');
+  span = document.createElement('span');
+  span.innerHTML = "Yucata play ";
+  result.append(span);
+  var linkElement = document.createElement('a');
+  linkElement.href = 'https://www.yucata.de/en/Game/' + GameTypeName + '/' + yucataGamePlayId;
+  linkElement.innerHTML = yucataGamePlayId;
+  result.append(linkElement);
+  span = document.createElement('span');
+  span.innerHTML = " : " + txt;
+  result.append(span);
+  result.classList.add('log_entry_type');
+  if (logEntryType !== undefined) {
+    result.classList.add(['log_entry_type--info', 'log_entry_type--ok', 'log_entry_type--warning', 'log_entry_type--error'][logEntryType]);
+  }
+  return result;
+}
 function getLogEntry(txt, logEntryType) {
   var placeholder = document.getElementById('log__placeholder');
   if (placeholder) {
