@@ -34,7 +34,7 @@
         '.progress_indicator { position: relative; overflow: hidden; margin-bottom: 1em; width: 360px; height: 10px; }' +
         '#progress_indicator__progress { position: absolute; background-color: green; width: 360px; height: 10px; right: 100% }' +
         '.progress_indicator__border { position: absolute; border: 3px solid black; width: 360px; height: 10px; }' +
-        '#log_area { resize: both; overflow: auto; background-color: #FFF; padding: 0.4em; }' +
+        '#log_area { resize: both; overflow: auto; max-height: 500px; background-color: #FFF; padding: 0.4em; }' +
         '.log_entry_type { color: black;}' +
         '.log_entry_type--info { color: blue;}' +
         '.log_entry_type--ok { color: green;}' +
