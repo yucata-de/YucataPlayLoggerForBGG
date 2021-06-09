@@ -6402,7 +6402,10 @@ function saveMultipleGamePlays(file) {
     if (xhr.readyState === 4) {
       // Parse the XML response:
       var res = parseXml(xhr.responseText);
-      incrementProgressIndicator(100 * Number(res.childNodes[0].getAttribute('page')) / Number(res.childNodes[0].getAttribute('total')));
+      var iTotalPlays = Number(res.childNodes[0].getAttribute('total'));
+      var iPlaysRead = Math.min(Number(res.childNodes[0].getAttribute('page') * 100), iTotalPlays);
+      incrementProgressIndicator(100 * iPlaysRead / iTotalPlays);
+      incrementActivityIndicator();
       if (res.childNodes[0].childNodes.length === 1) {
         // Last (empty) page received
         incrementProgressIndicator(100);
@@ -6470,7 +6473,6 @@ function saveMultipleGamePlays(file) {
         }
         iPage++;
         iTooManyRequestsError++;
-        incrementActivityIndicator();
         if (doStop !== true) {
           getOldPlaysNextPage();
         } else {
@@ -6494,10 +6496,10 @@ function saveMultipleGamePlays(file) {
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
       addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
-      saveNewGamePlays(oldYucataGameIdsIndex + 1);
+      setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
       addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
-      saveNewGamePlays(oldYucataGameIdsIndex + 1);
+      setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
     } else {
       addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
       var aPlaydata = [];
