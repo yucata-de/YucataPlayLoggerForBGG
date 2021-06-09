@@ -6352,7 +6352,10 @@ function saveMultipleGamePlays(file) {
           throw new Error("You aren't logged in.");
         } else {
           // Continue:
-          log("Reading all your BGG logs (to prevent double log creation) ...");
+          var logEntry = getLogEntry("Reading all your BGG play logs (to prevent double log creation) ... ");
+          progressIndicatorSpan = getProgressIndicatorSpan('read_bgg_play_logs');
+          logEntry.appendChild(progressIndicatorSpan);
+          addToLog(logEntry);
           getOldPlaysNextPage();
         }
       } else {
@@ -6443,13 +6446,14 @@ function saveMultipleGamePlays(file) {
           }
           var gameId = Number(sGameId);
           if (aOldYucataGameIds.indexOf(gameId) !== -1) {
-            log("Yucata play " + oYucataPlay.GameId + " : Found several BGG play logs with this yucata game id.", LOG_ENTRY_TYPE.WARNING);
+            addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Found several BGG play logs with this yucata game id.", LOG_ENTRY_TYPE.WARNING));
             continue;
           }
           aOldYucataGameIds.push(gameId);
         }
         iPage++;
         iTooManyRequestsError++;
+        incrementProgressIndicatorSpan(progressIndicatorSpan);
         getOldPlaysNextPage();
       }
     }
@@ -6466,13 +6470,13 @@ function saveMultipleGamePlays(file) {
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
-      log("Yucata play " + oYucataPlay.GameId + " : Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR);
+      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
       saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
-      log("Yucata play " + oYucataPlay.GameId + " : Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO);
+      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
       saveNewGamePlays(oldYucataGameIdsIndex + 1);
     } else {
-      log("Yucata play " + oYucataPlay.GameId + " : Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK);
+      addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
       var aPlaydata = [];
       aPlaydata.push([ 'playdate', getDateString(new Date(Number(oYucataPlay.FinishedOn.slice(6, -2)))) ]);
       aPlaydata.push([ 'dateinput', getDateString(new Date()) ]);
@@ -6526,6 +6530,7 @@ function saveMultipleGamePlays(file) {
   var TOO_MANY_REQUESTS_ERROR_THRESHOLD = 15;
   var TOO_MANY_REQUESTS_ERROR_TIMEOUT = 10000; // ms
   var DEFAULT_TIMEOUT_BETWEEN_REQUESTS = 2000; // ms
+  var progressIndicatorSpan;
   var gotLastPage = false;
   var iPage = 1;
   var iTooManyRequestsError = 1;
@@ -6919,7 +6924,7 @@ function fileDropHandler(ev) {
   if (ev.dataTransfer.items) {
     // Use DataTransferItemList interface to access the file(s)
     if (ev.dataTransfer.items.length > 1) {
-      log("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR);
+      addToLog(getLogEntry("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR));
       return;
     }
     // If dropped items aren't files, reject them
@@ -6929,7 +6934,7 @@ function fileDropHandler(ev) {
   } else {
     // Use DataTransfer interface to access the file(s)
     if (ev.dataTransfer.files.length > 1) {
-      log("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR);
+      addToLog(getLogEntry("Drop only *one* file !", LOG_ENTRY_TYPE.ERROR));
       return;
     }
     file = ev.dataTransfer.files[0];
@@ -6948,7 +6953,7 @@ var LOG_ENTRY_TYPE = {
   WARNING: 2,
   ERROR: 3
 };
-function log(txt, logEntryType) {
+function getLogEntry(txt, logEntryType) {
   var placeholder = document.getElementById('log__placeholder');
   if (placeholder) {
     placeholder.parentNode.removeChild(placeholder);
@@ -6960,8 +6965,22 @@ function log(txt, logEntryType) {
   if (logEntryType !== undefined) {
     elem.classList.add(['log_entry_type--info', 'log_entry_type--ok', 'log_entry_type--warning', 'log_entry_type--error'][logEntryType]);
   }
+  return elem;
+}
+function addToLog(elem) {
   log_area.append(elem);
 }
 function log_startProcessing(file) {
-  log('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...');
+  addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
+}
+var PROGRESS_INDICATOR_CHAR = ['/', '-', '\\', '|', ''];
+function getProgressIndicatorSpan(sType) {
+  var result = document.createElement('span');
+  result.classList.add('progress_indicator_span--' + sType);
+  result.innerHTML = '/';
+  return result;
+}
+function incrementProgressIndicatorSpan(elem) {
+  var currIdx = PROGRESS_INDICATOR_CHAR.indexOf(elem.innerHTML);
+  elem.innerHTML = PROGRESS_INDICATOR_CHAR[currIdx + 1];
 }
