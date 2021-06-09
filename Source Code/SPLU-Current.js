@@ -31,7 +31,7 @@
       style.type='text/css';
       style.innerHTML =
         '.file_drop_zone { background-color: lightgrey; border: 5px solid blue; width: 360px; height: 100px; padding: 1em 1em 1em 2em; margin-bottom: 0.5em; font-size: 2em; }' +
-        '.progress_indicator { position: relative; overflow: hidden; margin-bottom: 1em; width: 360px; height: 10px; }' +
+        '.progress_indicator { position: relative; display: inline-block; overflow: hidden; margin-bottom: 1em; width: 360px; height: 10px; }' +
         '#progress_indicator__progress { position: absolute; background-color: green; width: 360px; height: 10px; right: 100% }' +
         '.progress_indicator__border { position: absolute; border: 3px solid black; width: 360px; height: 10px; }' +
         '#log_area { resize: both; overflow: auto; max-height: 500px; background-color: #FFF; padding: 0.4em; }' +
@@ -41,7 +41,10 @@
         '.log_entry_type--warning { color: yellow; background-color: grey;}' +
         '.log_entry_type--error { color: red;}' +
         '#saveMultipleGamePlaysBtn { border:2px solid green;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black; }' +
-        '#stop_processing_btn { border:2px solid red;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;margin-left:0.2em; visibility:hidden; }';
+        '#stop_processing_btn { border:2px solid red;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;margin-left:0.2em; visibility:hidden; }' +
+        '#activity_indicator { display: inline-block; vertical-align: top; margin-left: 0.5em; }';
+
+
       document.getElementsByTagName('head')[0].appendChild(style);
     }
     
@@ -310,6 +313,7 @@
         +'<div id="progress_indicator__progress"></div>'
         +'<div class="progress_indicator__border"></div>'
       +'</div>'
+      +'<div id="activity_indicator">/</div>'
 
       +'<div>'
         +'<div class="BRcells">'
@@ -6363,10 +6367,7 @@ function saveMultipleGamePlays(file) {
           throw new Error("You aren't logged in.");
         } else {
           // Continue:
-          var logEntry = getLogEntry("Reading all your BGG play logs (to prevent double log creation) ... ");
-          progressIndicatorSpan = getProgressIndicatorCharSpan('read_bgg_play_logs');
-          logEntry.appendChild(progressIndicatorSpan);
-          addToLog(logEntry);
+          addToLog(getLogEntry("Reading all your BGG play logs (to prevent double log creation) ... "));
           getOldPlaysNextPage();
         }
       } else {
@@ -6466,7 +6467,7 @@ function saveMultipleGamePlays(file) {
         }
         iPage++;
         iTooManyRequestsError++;
-        incrementProgressIndicatorCharSpan(progressIndicatorSpan);
+        incrementProgressIndicatorCharSpan();
         if (doStop !== true) {
           getOldPlaysNextPage();
         } else {
@@ -6484,6 +6485,7 @@ function saveMultipleGamePlays(file) {
     if (oldYucataGameIdsIndex >= yucataPlays.length) {
       return;
     }
+    incrementProgressIndicator(100 * oldYucataGameIdsIndex / yucataPlays.length);
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
@@ -6996,13 +6998,8 @@ function log_startProcessing(file) {
   addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
 }
 var PROGRESS_INDICATOR_CHAR = ['/', '-', '\\', '|', ''];
-function getProgressIndicatorCharSpan(sType) {
-  var result = document.createElement('span');
-  result.classList.add('progress_indicator_span--' + sType);
-  result.innerHTML = '/';
-  return result;
-}
-function incrementProgressIndicatorCharSpan(elem) {
+function incrementProgressIndicatorCharSpan() {
+  var elem = document.getElementById("activity_indicator");
   var currIdx = PROGRESS_INDICATOR_CHAR.indexOf(elem.innerHTML);
   elem.innerHTML = PROGRESS_INDICATOR_CHAR[currIdx + 1];
 }
