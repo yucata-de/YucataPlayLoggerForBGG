@@ -39,7 +39,9 @@
         '.log_entry_type--info { color: blue;}' +
         '.log_entry_type--ok { color: green;}' +
         '.log_entry_type--warning { color: yellow; background-color: grey;}' +
-        '.log_entry_type--error { color: red;}';
+        '.log_entry_type--error { color: red;}' +
+        '#saveMultipleGamePlaysBtn { border:2px solid green;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black; }' +
+        '#stop_processing_btn { border:2px solid red;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;margin-left:0.2em; visibility:hidden; }';
       document.getElementsByTagName('head')[0].appendChild(style);
     }
     
@@ -317,7 +319,8 @@
         +'</div>'
         +'<div class="BRcells">'
           +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Add Plays to BGG</a>'
+            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Add Plays to BGG</a>'
+            +'<a href="javascript:{void(0);}" onClick="javascript:{stopProcessing();}" id="stop_processing_btn">Stop</a>'
           +'</div>'
         +'</div>'
         +'<div class="BRcells" id="SPLUeditPlayDiv" style="display:none;">'
@@ -6464,7 +6467,11 @@ function saveMultipleGamePlays(file) {
         iPage++;
         iTooManyRequestsError++;
         incrementProgressIndicatorCharSpan(progressIndicatorSpan);
-        getOldPlaysNextPage();
+        if (doStop !== true) {
+          getOldPlaysNextPage();
+        } else {
+          doStop = false;
+        }
       }
     }
   }
@@ -6510,7 +6517,11 @@ function saveMultipleGamePlays(file) {
       if (this.readyState == 4 && this.status == 200) {
         var res = parseXml(xhr.responseText);
         console.log(res);
-        saveNewGamePlays(oldYucataGameIdsIndex + 1);
+        if (doStop !== true) {
+          saveNewGamePlays(oldYucataGameIdsIndex + 1);
+        } else {
+          doStop = false
+        }
       }
     };
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -6548,6 +6559,7 @@ function saveMultipleGamePlays(file) {
   var xhr;
   var bggLoggedInUser = "";
 
+  stopProcessingButtonShow();
   getLoggedInUser();
 
 
@@ -6997,4 +7009,17 @@ function incrementProgressIndicatorCharSpan(elem) {
 function incrementProgressIndicator(percent) {
   var elem = document.getElementById("progress_indicator__progress");
   elem.style.right = (100 - percent) + "%";
+}
+var doStop;
+function stopProcessing() {
+  doStop = true;
+  stopProcessingButtonHide();
+}
+function stopProcessingButtonShow() {
+  var elem = document.getElementById("stop_processing_btn");
+  elem.style.visibility = 'visible';
+}
+function stopProcessingButtonHide() {
+  var elem = document.getElementById("stop_processing_btn");
+  elem.style.visibility = 'hidden';
 }
