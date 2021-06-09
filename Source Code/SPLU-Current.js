@@ -6493,7 +6493,7 @@ function saveMultipleGamePlays(file) {
       return;
     }
     incrementActivityIndicator();
-    incrementProgressIndicator(100 * oldYucataGameIdsIndex / yucataPlays.length);
+    incrementProgressIndicator(100 * (oldYucataGameIdsIndex + 1) / yucataPlays.length);
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
