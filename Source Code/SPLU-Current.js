@@ -6467,7 +6467,7 @@ function saveMultipleGamePlays(file) {
         }
         iPage++;
         iTooManyRequestsError++;
-        incrementProgressIndicatorCharSpan();
+        incrementActivityIndicator();
         if (doStop !== true) {
           getOldPlaysNextPage();
         } else {
@@ -6997,8 +6997,8 @@ function addToLog(elem) {
 function log_startProcessing(file) {
   addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
 }
-var PROGRESS_INDICATOR_CHAR = ['/', '-', '\\', '|', ''];
-function incrementProgressIndicatorCharSpan() {
+var PROGRESS_INDICATOR_CHAR = ['/', '-', '&#92;', '|', ''];
+function incrementActivityIndicator() {
   var elem = document.getElementById("activity_indicator");
   var currIdx = PROGRESS_INDICATOR_CHAR.indexOf(elem.innerHTML);
   elem.innerHTML = PROGRESS_INDICATOR_CHAR[currIdx + 1];
