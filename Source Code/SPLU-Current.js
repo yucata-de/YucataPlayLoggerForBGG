@@ -6425,16 +6425,19 @@ function saveMultipleGamePlays(file) {
               }
             }
             console.log(txt);
-            log_startProcessing(file);
           }
         }
         if (file) {
+          log_startProcessing(file);
           var read = new FileReader();
           read.readAsBinaryString(file);
           read.onloadend = function(){
               yucataPlays = JSON.parse(read.result).data;
               saveNewGamePlays(0);
           }
+        } else {
+          addToLog(getLogEntry("Select a file containing the Yucata plays !", LOG_ENTRY_TYPE.ERROR));
+          stopProcessing();
         }
       } else {
         for (var i = 0; i < res.childNodes[0].childNodes.length; i++) {
@@ -6485,6 +6488,7 @@ function saveMultipleGamePlays(file) {
     if (oldYucataGameIdsIndex >= yucataPlays.length) {
       return;
     }
+    incrementActivityIndicator();
     incrementProgressIndicator(100 * oldYucataGameIdsIndex / yucataPlays.length);
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
