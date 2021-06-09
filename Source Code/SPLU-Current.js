@@ -6456,7 +6456,7 @@ function saveMultipleGamePlays(file) {
           }
           var gameId = Number(sGameId);
           if (aOldYucataGameIds.indexOf(gameId) !== -1) {
-            addToLog(getLogEntry("Yucata play " + oYucataPlay.GameId + " : Found several BGG play logs with this yucata game id.", LOG_ENTRY_TYPE.WARNING));
+            addToLog(getLogEntry("Yucata play " + gameId + " : Found several BGG play logs with this yucata game id.", LOG_ENTRY_TYPE.ERROR));
             continue;
           }
           aOldYucataGameIds.push(gameId);
@@ -6978,7 +6978,7 @@ function getLogEntry(txt, logEntryType) {
   return elem;
 }
 function addToLog(elem) {
-  log_area.append(elem);
+  log_area.prepend(elem);
 }
 function log_startProcessing(file) {
   addToLog(getLogEntry('Processing yucata play file "' + file.name + ' (' + file.size + ' bytes) ...'));
