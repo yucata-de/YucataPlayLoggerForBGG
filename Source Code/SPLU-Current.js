@@ -2,14 +2,14 @@
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
-      alert("You must be on a BGG website to run SPLU.");
+      alert("You must be on a BGG website to run YucataPlayLoggerForBGG.");
       throw new Error("You aren't on a BGG site.");
     }
     //Check if they are on a page that gives issues.  Specifically break on anything containing the polyfill script.
     let tmpScripts = document.getElementsByTagName('script');
     for (s=0; s<tmpScripts.length; s++) {
       if(tmpScripts[s].src.includes("polyfill") || window.location.pathname.substr(0,11)=="/boardgame/") {
-        if (!confirm("SPLU probably doesn't function properly on this page.\r\n\r\nTry running from your Subscriptions page.\r\n\r\nClick OK to try running SPLU anyways.")){
+        if (!confirm("YucataPlayLoggerForBGG probably doesn't function properly on this page.\r\n\r\nTry running from your Subscriptions page.\r\n\r\nClick OK to try running YucataPlayLoggerForBGG anyways.")){
           throw new Error("Incompatible page.");
         } else {
           break;
@@ -17,7 +17,7 @@
       }
     }
     //Check if SPLU is already open, throw an error if not
-    if(document.getElementById('SPLUwindow')){throw new Error("SPLU Already Running");} else {
+    if(document.getElementById('SPLUwindow')){throw new Error("YucataPlayLoggerForBGG Already Running");} else {
       // Load javascript libs:
       function includeJs(jsFilePath) {
         var f = document.createElement("script");
