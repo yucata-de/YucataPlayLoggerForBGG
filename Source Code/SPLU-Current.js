@@ -1156,95 +1156,11 @@
     }
   }
 
-  function setTwitterIcons(){
-    var tmpIcons=document.getElementsByClassName('SPLUtwitterIcon');
-    var tmpDisplay="none";
-    if(document.getElementById("twitter").checked){
-      tmpDisplay="";
-    }
-    for(i=0;i<tmpIcons.length;i++){
-      tmpIcons[i].style.display=tmpDisplay;
-    }
-  }
-  
-  function resetSettings(){
-    SPLU.Settings={
-      "i18n": "en",
-      "DateField":{"Visible":true,"Reset":true},
-      "LocationField":{"Visible":true,"Reset":true},
-      "LocationList":{"Visible":true,"Reset":true},
-      "QuantityField":{"Visible":true,"Reset":true},
-      "DurationField":{"Visible":true,"Reset":true},
-      "IncompleteField":{"Visible":true,"Reset":true},
-      "NoWinStatsField":{"Visible":true,"Reset":true},
-      "CommentsField":{"Visible":true,"Reset":true,"Width":"315px","Height":"110px"},
-      "GameField":{"Visible":true},
-      "PlayerList":{"Visible":true},
-      "PlayerNameColumn":{"Visible":true,"Reset":false},
-      "PlayerUsernameColumn":{"Visible":true,"Reset":false},
-      "PlayerColorColumn":{"Visible":true,"Reset":false},
-      "PlayerPositionColumn":{"Visible":true,"Reset":true},
-      "PlayerScoreColumn":{"Visible":true,"Reset":true},
-      "PlayerRatingColumn":{"Visible":true,"Reset":true},
-      "PlayerWinColumn":{"Visible":true,"Reset":true},
-      "PlayerNewColumn":{"Visible":true,"Reset":true},
-      "SummaryTextField":{"Visible":true},
-      "PopUpText":{"Visible":true},
-      "WinComments":{"Visible":false},
-      "ExpansionComments":{"Visible":false},
-      "DomainButtons":{"Visible":false},
-      "ExpansionQuantity":{"Value":"0"},
-      "ExpansionDetails":{"Include":true},
-      "ExpansionComments":{"Visible":false},
-      "ExpansionLinkParent":{"Enabled":false},
-      "SortPlayers":{"Order":"none"},
-      "SortGroups":{"Order":"none"},
-      "PlayerFilters":{"Visible":false},
-      "PlayerGroups":{"Visible":false},
-      "TwitterField":{"Enabled":false,"Visible":false,"Reset":true},
-      "ExpansionWinStats":{"Enabled":false},
-      "DefaultPlayer":{"Name":"-blank-"},
-      "DefaultLocation":{"Name":"-blank-"},
-      "Favorites":{"ThumbSize":"tallthumb"},
-      "FetchPlayCount":{"Enabled":false}
-    }
-  }
-  
 
-  function compareSPLU(){
-    SPLUtemp=SPLU;
-    SPLU = {
-      "Version":SPLUversion,
-      "Favorites":{},
-      "FavoritesOrder":[],
-      "Locations":{
-        0: { "Name": "Location1" }
-      },
-      "Players":{
-        0: { "Name": "Player1", "Username": "Username1", "Color": "Color1" }
-      },
-      "Filters":{},
-      "Groups":{}
-    };
-    resetSettings();
-    for(key in SPLU){
-      if(SPLUtemp[key]===undefined){
-        SPLUtemp[key]=SPLU[key];
-      }
-    }
-    for(key in SPLU.Settings){
-      if(SPLUtemp.Settings[key]===undefined){
-        SPLUtemp.Settings[key]=SPLU.Settings[key];
-      }
-      for(key2 in SPLU.Settings[key]){
-        if(SPLUtemp.Settings[key][key2]===undefined){
-          SPLUtemp.Settings[key][key2]=SPLU.Settings[key][key2];
-        }
-      }
-    }
-    SPLU=SPLUtemp;
-    return;
-  }
+
+
+
+
 
   function verifyData(){
     SPLUverifySave=false;
@@ -1357,8 +1273,7 @@
       console.log("Settings look fine.");
       return false;
     }
-  }
-  
+  }  
   function fetchSaveData(){
     //document.getElementById("BRresults").innerHTML="Fetching save data.";
     //window.setTimeout(function(){ document.getElementById("BRresults").innerHTML=""; }, 900);
@@ -1454,8 +1369,6 @@
     //oReq.open("get", "/xmlapi2/plays?username="+LoggedInAs+"&mindate=1452-04-15&maxdate=1452-04-15&id=98000", true);
     oReq.send();
   }
-
-
   async function fetchLanguageFileQ(lang) {
     //Call this function to add the item to the queue
     console.log('fetchLanguageFileQ('+lang+')');
@@ -1470,7 +1383,6 @@
     });
     runQueue();
   }
-  
   async function fetchLanguageFile(tmpArgs) {
     //This function is called by runQueue() when processing the queue item
     console.log("fetchLanguageFile() - ", tmpArgs);
@@ -1483,7 +1395,6 @@
         console.log("catcherror", e); 
     }
   }
-
   function fetchLanguageFileFinish(tmpObj){
     //This function is called by runQueue() when the item was processed successfully?
     console.log("fetchLanguageFileFinish() - ", tmpObj);
@@ -1492,40 +1403,6 @@
     initSPLU();
     //window.setTimeout(function(){initSPLU();},500);
   }
-
-  async function fetchLanguageListQ() {
-    //Call this function to add the item to the queue
-    console.log('fetchLanguageListQ()');
-    SPLUqueue.push({
-      "action":fetchLanguageList, 
-      "arguments":{},
-      "direction":"fetch",
-      "data":"",
-      "response":"",
-      "attempt":0,
-      "finish":fetchLanguageListFinish
-    });
-    runQueue();
-  }
-  
-  async function fetchLanguageList(tmpArgs) {
-    //This function is called by runQueue() when processing the queue item
-    console.log("fetchLanguageList() - ", tmpArgs);
-    try {
-        const url = `https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/i18n/list.json`;
-        const options = {};  //Setting headers here seems to trigger CORS
-        return await fetchDataJSON(url, options);
-    } catch(e) {
-      //This shows on bad URLs?
-        console.log("catcherror", e); 
-    }
-  }
-
-
-
-
-
-
   function setObjectType(type){
     console.log("setObjectType("+type+");");
     SPLUexpansionsLoaded=false;
