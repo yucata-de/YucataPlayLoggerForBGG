@@ -1521,31 +1521,10 @@
     }
   }
 
-  function fetchLanguageListFinish(tmpObj){
-    //This function is called by runQueue() when the item was processed successfully?
-    console.log("fetchLanguageListFinish() - ", tmpObj);
-    //window.testObj=tmpObj;
-    SPLUi18nList=tmpObj.data;
-    //loadLanguageList();
-    window.setTimeout(function(){loadLanguageList();},100);
-  }
 
-  function loadLanguageList(){
-    select=document.getElementById('SPLU.SelectLanguage');
-    tmpLang=SPLU.Settings.i18n;
-    select.options.length=0;
-    var i=0;
-    for(var key in SPLUi18nList){
-      if (SPLUi18nList.hasOwnProperty(key)) {
-        if(tmpLang==key){
-          select.options[i]=new Option(decodeURIComponent(SPLUi18nList[key].LocalName), key, false, true);
-        }else{
-          select.options[i]=new Option(decodeURIComponent(SPLUi18nList[key].LocalName), key, false, false);
-        }
-        i++;
-      }
-    }
-  }
+
+
+
 
   function setObjectType(type){
     console.log("setObjectType("+type+");");
@@ -1565,76 +1544,6 @@
     }
     clearSearchResult();
   }
-
-  //Sorting functions found on StackOverflow
-  function dynamicSort(property) {
-    var sortOrder = 1;
-    if(property[0] === "-") {
-      sortOrder = -1;
-      property = property.substr(1);
-    }
-    return function (a,b) {
-      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-      return result * sortOrder;
-    }
-  }
-  function dynamicSortMultiple() {
-    /*
-     * save the arguments object as it will be overwritten
-     * note that arguments object is an array-like object
-     * consisting of the names of the properties to sort by
-     */
-    var props = arguments;
-    return function (obj1, obj2) {
-      var i = 0, result = 0, numberOfProperties = props.length;
-      /* try getting a different result from 0 (equal)
-       * as long as we have extra properties to compare
-       */
-      while(result === 0 && i < numberOfProperties) {
-        result = dynamicSort(props[i])(obj1, obj2);
-        i++;
-      }
-      return result;
-    }
-  }
-
-  //Case Insensitive version
-  function dynamicSortCI(property) {
-    var sortOrder = 1;
-    if(property[0] === "-") {
-      sortOrder = -1;
-      property = property.substr(1);
-    }
-    return function (a,b) {
-      if(isNumeric(a[property]) || isNumeric(b[property])){
-        var result = (parseFloat(a[property]) < parseFloat(b[property])) ? -1 : (parseFloat(a[property]) > parseFloat(b[property])) ? 1 : 0;
-      }else{
-        var result = (a[property].toLowerCase() < b[property].toLowerCase()) ? -1 : (a[property].toLowerCase() > b[property].toLowerCase()) ? 1 : 0;
-      }
-      return result * sortOrder;
-    }
-  }
-  function dynamicSortMultipleCI() {
-    /*
-     * save the arguments object as it will be overwritten
-     * note that arguments object is an array-like object
-     * consisting of the names of the properties to sort by
-     */
-    var props = arguments;
-    return function (obj1, obj2) {
-      var i = 0, result = 0, numberOfProperties = props.length;
-      /* try getting a different result from 0 (equal)
-       * as long as we have extra properties to compare
-       */
-      while(result === 0 && i < numberOfProperties) {
-        result = dynamicSortCI(props[i])(obj1, obj2);
-        i++;
-      }
-      return result;
-    }
-  }
-
-  
   function getGameID(){
     var metas=document.getElementsByTagName('meta');
     for(i=0;i<metas.length;i++){
@@ -1649,45 +1558,6 @@
     }
     return "";
   }
-  
-  function getGameTitle(){
-    var metas=document.getElementsByTagName('meta');
-    for(i=0;i<metas.length;i++){
-      if(metas[i].getAttribute("name")=="og:title"){
-        SPLUgameTitle=metas[i].getAttribute("content");
-        return SPLUgameTitle;
-      }
-    }
-    return "";
-  }
-  
-  function insertBlank(id){
-    var child=1;
-    if(document.getElementById(id).childNodes[0].innerHTML==SPLUi18n.StatusLogged){
-      child=0;
-    }
-    document.getElementById(id).childNodes[child].setAttribute("target","_blank");
-  }
-    
-  function savePlayer(id){
-    if(document.getElementsByName('players['+id+'][name]')[0].value!=""||document.getElementsByName('players['+id+'][username]')[0].value!=""){
-      var tmpPly=0;
-      for(var key in SPLU.Players){
-        if (SPLU.Players.hasOwnProperty(key)) {
-          tmpPly++;
-        }
-      }
-      SPLU.Players[(document.getElementsByName('players['+id+'][name]')[0].value.replace(/ /g,'').toLowerCase()+tmpPly)]={"Name":document.getElementsByName('players['+id+'][name]')[0].value,"Username":document.getElementsByName('players['+id+'][username]')[0].value,"Color":document.getElementsByName('players['+id+'][color]')[0].value,"SortOrder":"0"};
-      SPLUremote.Players=SPLU.Players;
-      saveSooty("BRresults",SPLUi18n.StatusThinking,SPLUi18n.StatusSaved,function(){
-        loadPlayers();
-        if(document.getElementById('BRlogPlayers').style.display=="table-cell"){
-          showPlayersPane("save");
-        }
-      });
-    }
-  }
-  
   function loadPlayers(){
     var players=[];
     // if(SPLU.Settings.SortPlayers.Order=="Alpha"){
@@ -1726,48 +1596,6 @@
       }
     }
   }
-  
-  function setFilter(src){
-    if(src=="choose"){
-      SPLUcurrentFilter=document.getElementById('SPLU.SelectFilter').value;
-      showHidePlayers(false,"show");
-    }else if(src=="delete" || src=="hide"){
-      SPLUcurrentFilter="All";
-    }else{
-      SPLUcurrentFilter=document.getElementById('SPLU.FiltersSubSelect').value;
-      if(SPLUcurrentFilter=="---"){
-        SPLUcurrentFilter="All";
-      }
-    }
-    //Make the Filters tab show the currently selected filter
-    var checks=document.getElementsByName('SPLUfilterChecks');
-    for(i=0;i<checks.length;i++){
-      if(SPLUcurrentFilter=="All"||SPLUcurrentFilter=="Groups"){
-        checks[i].checked=false;
-        continue;
-      }
-      if(SPLU.Filters[SPLUcurrentFilter].indexOf(checks[i].value)!=-1){
-        checks[i].checked=true;
-      }else{
-        checks[i].checked=false;
-      }
-    }
-    loadPlayers();
-  }
-  
-  function setGroup(){
-    SPLUcurrentGroup=document.getElementById('SPLU.GroupsSubSelect').value;
-    var checks=document.getElementsByName('SPLUgroupChecks');
-    for(i=0;i<checks.length;i++){
-      if(SPLU.Groups[SPLUcurrentGroup].indexOf(checks[i].value)!=-1){
-        checks[i].checked=true;
-      }else{
-        checks[i].checked=false;
-      }
-    }
-    loadGroups();
-  }
-
   function loadGroups(){
     var select=document.getElementById('SPLU.GroupsSubSelect');
     select.options.length=0;
@@ -1783,7 +1611,6 @@
       }
     }
   }
-  
   function loadDefaultPlayersList(){
     select=document.getElementById('SPLU.SelectDefaultPlayer');
     tmpName=SPLU.Settings.DefaultPlayer.Name;
@@ -1820,7 +1647,6 @@
       }
     }
   }
-
   function insertPlayer(player){
     console.log("insertPlayer()");
     NumOfPlayers++;
@@ -1891,7 +1717,6 @@
     
    SPLUsetFieldWidthDelay();
   }
-
   var SPLUsetFieldWidthDelayTimeout;    
   function SPLUsetFieldWidthDelay() {
     if ( SPLUsetFieldWidthDelayTimeout ) {
@@ -1901,7 +1726,6 @@
       SPLUsetFieldWidthDelayTimeout = setTimeout( setAllFieldWidths, 500 );
     }
   }
-
   function setFieldWidth(field) {
     console.log("setFieldWidth(" + field + ")");
     tmpfields=document.querySelectorAll("[data-spluplayerfield='"+field+"']");
@@ -1916,7 +1740,6 @@
       tmpfields[i].size=tmpmax;
     }
   }
-  
   function setAllFieldWidths() {
     setFieldWidth("name");
     setFieldWidth("username");
@@ -1925,10 +1748,6 @@
     setFieldWidth("score");
     setFieldWidth("rating");
   }
-
-
-
-
   function saveSooty(statusID, statusLoading, statusSuccess, onloadFunction){
     console.log("saveSooty()");
     tmpSettings=JSON.stringify(SPLUremote);
