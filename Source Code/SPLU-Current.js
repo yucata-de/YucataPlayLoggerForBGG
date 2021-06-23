@@ -1117,7 +1117,6 @@
     loadDefaultLocationList();
     loadFavoritesThumbSizeList();
 
-    window.setTimeout(function(){addCalendar();},1500);
 
     setPlayers("reset");
     setLocation("reset");
@@ -2672,28 +2671,6 @@
     // Adding it back as it causes some issues with the calendar popping up when it shouldn't.
     SPLUcalendar.setDate(document.getElementById('SPLUplayDateInput').value);
   }
-
-  function addCalendar(){
-    var piki18n= {
-      previousMonth	: SPLUi18n.CalendarPreviousMonth,
-      nextMonth	: SPLUi18n.CalendarNextMonth,
-      months		: [SPLUi18n.CalendarJanuary,SPLUi18n.CalendarFebruary,SPLUi18n.CalendarMarch,SPLUi18n.CalendarApril,SPLUi18n.CalendarMay,SPLUi18n.CalendarJune,SPLUi18n.CalendarJuly,SPLUi18n.CalendarAugust,SPLUi18n.CalendarSeptember,SPLUi18n.CalendarOctober,SPLUi18n.CalendarNovember,SPLUi18n.CalendarDecember],
-      weekdays	: [SPLUi18n.CalendarSunday,SPLUi18n.CalendarMonday,SPLUi18n.CalendarTuesday,SPLUi18n.CalendarWednesday,SPLUi18n.CalendarThursday,SPLUi18n.CalendarFriday,SPLUi18n.CalendarSaturday],
-      weekdaysShort	: [SPLUi18n.CalendarSun,SPLUi18n.CalendarMon, SPLUi18n.CalendarTue,SPLUi18n.CalendarWed,SPLUi18n.CalendarThu,SPLUi18n.CalendarFri,SPLUi18n.CalendarSat]
-    };
-    SPLUcalendar = new Pikaday(
-      {
-          field: document.getElementById('SPLUplayDateInput'),
-          trigger: document.getElementById('SPLUdatePickerTrigger'),
-          firstDay: 0,
-          yearRange: 5,
-          i18n: piki18n,
-          onSelect: function() {
-              parseDate(document.getElementById('SPLUplayDateInput'),document.getElementById('playdate99'),document.getElementById('playdatestatus99'));
-          }
-      });
-  }
-
 
   function isValidDate(dateString) {
     //From https://stackoverflow.com/questions/18758772/how-do-i-validate-a-date-in-this-format-yyyy-mm-dd-using-jquery
