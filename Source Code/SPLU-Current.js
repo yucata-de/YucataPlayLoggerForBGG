@@ -229,18 +229,6 @@
     sortscript.src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/scripts/sortable.js';
     document.body.appendChild(sortscript);
 
-    
-    //Insert code for Pikaday calendar Copyright © 2014 David Bushell
-    var pikscript=document.createElement('script');
-    pikscript.type="text/javascript";
-    pikscript.src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/scripts/pikaday.js';
-    document.body.appendChild(pikscript);
-    var pikstyle=document.createElement("link");
-    pikstyle.type="text/css";
-    pikstyle.rel="stylesheet";
-    pikstyle.href="https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/scripts/pikaday.css";
-    document.getElementsByTagName('head')[0].appendChild(pikstyle);
-
     var style=document.createElement('style');
     style.type='text/css';
     style.id="BRstyle";
