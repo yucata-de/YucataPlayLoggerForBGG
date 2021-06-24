@@ -135,13 +135,6 @@
     var SPLUqueueSaveAfter = false;
     var SPLUqueueFetchImageCount = 0;
    
-    //Insert FontAwesome CSS
-    tmpLink=document.createElement('link');
-    tmpLink.type="text/css";
-    tmpLink.rel="stylesheet";
-    tmpLink.href="https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/font-awesome/css/font-awesome.min.577.css";
-    document.getElementsByTagName("head")[0].appendChild(tmpLink);
-
 
   async function fetchDataJSON(url, options) {
     const response = await fetch(url, options);
