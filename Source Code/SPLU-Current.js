@@ -6,7 +6,7 @@
       throw new Error("You aren't on a BGG site.");
     }
     //Check if they are on a page that gives issues.  Specifically break on anything containing the polyfill script.
-    let tmpScripts = document.getElementsByTagName('script');
+    var tmpScripts = document.getElementsByTagName('script');
     for (s=0; s<tmpScripts.length; s++) {
       if(tmpScripts[s].src.includes("polyfill") || window.location.pathname.substr(0,11)=="/boardgame/") {
         if (!confirm("YucataPlayLoggerForBGG probably doesn't function properly on this page.\r\n\r\nTry running from your Subscriptions page.\r\n\r\nClick OK to try running YucataPlayLoggerForBGG anyways.")){
@@ -129,11 +129,11 @@
     var SPLUimageData={};
     var SPLUrank="empty";
 
-    let SPLUqueue = [];
-    let SPLUqueueFails = [];
-    let SPLUqueueRunning = false;
-    let SPLUqueueSaveAfter = false;
-    let SPLUqueueFetchImageCount = 0;
+    var SPLUqueue = [];
+    var SPLUqueueFails = [];
+    var SPLUqueueRunning = false;
+    var SPLUqueueSaveAfter = false;
+    var SPLUqueueFetchImageCount = 0;
    
     //Insert FontAwesome CSS
     tmpLink=document.createElement('link');
