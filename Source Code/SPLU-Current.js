@@ -844,7 +844,7 @@ function saveMultipleGamePlays(file) {
         var res = parseXml(xhr.responseText);
         console.log(res);
         if (doStop !== true) {
-          saveNewGamePlays(oldYucataGameIdsIndex + 1);
+          setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 1000); // Limit play logging frequence in order not to trouble the BGG server
         } else {
           doStop = false;
         }
