@@ -592,7 +592,7 @@
     //Check if their settings will overflow the 64KB comment limit on BGG.
     if(tmpSettings.length>65500){
       alert("Your saved settings are using too much space to be saved: "+tmpSettings.length+" bytes.\nPlease delete a favorite and try again.");
-      document.getElementById(statusID).innerHTML="<img style='vertical-align:bottom;padding-top:5px;' src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/alert.gif'><span style='background-color:red;color:white;font-weight:bold;'>"+SPLUi18n.StatusErrorOccurred+"</span>";
+      document.getElementById(statusID).innerHTML="<img style='vertical-align:bottom;padding-top:5px;' src=''><span style='background-color:red;color:white;font-weight:bold;'>"+SPLUi18n.StatusErrorOccurred+"</span>";
     } else {
       xmlhttp=new XMLHttpRequest();
       xmlhttp.open("POST","/geekplay.php",true);
@@ -607,7 +607,7 @@
           }
           onloadFunction();
         }else{
-          document.getElementById(statusID).innerHTML="<img style='vertical-align:bottom;padding-top:5px;' src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/alert.gif'><span style='background-color:red;color:white;font-weight:bold;'>"+SPLUi18n.StatusErrorCode+": "+responseJSON.target.status+"</span>";
+          document.getElementById(statusID).innerHTML="<img style='vertical-align:bottom;padding-top:5px;' src=''><span style='background-color:red;color:white;font-weight:bold;'>"+SPLUi18n.StatusErrorCode+": "+responseJSON.target.status+"</span>";
         }
       };
       if(document.getElementById(statusID)==null){
