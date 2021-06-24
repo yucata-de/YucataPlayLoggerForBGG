@@ -351,204 +351,6 @@
     tmpDiv.innerHTML+=tmpHTML;
     BRlogForm.appendChild(tmpDiv);
 
-
-    
-    var BRlogSettings=document.createElement('div');
-    BRlogSettings.id='BRlogSettings';
-    BRlogSettings.setAttribute("style","display:none; background-color: #80FE86; padding: 13px;border:2px solid black;border-radius:15px; box-shadow:10px 10px 5px #888; min-width:75px;position:relative;");
-    var tmpDiv=document.createElement('div');
-    var tmpHTML='<div id="hideSettingsButton" style="position: absolute; right: -2px; top: -3px;">'
-      +'</div>';
-    tmpDiv.innerHTML+=tmpHTML;
-    BRlogSettings.appendChild(tmpDiv);
-
-
-    var BRlogFavs=document.createElement('div');
-    BRlogFavs.id='BRlogFavs';
-    BRlogFavs.setAttribute("style","display:none; background-color: #FFAEC5; font-style:initial; color:black; padding: 13px;border:2px solid #F30F27;border-radius:15px; box-shadow:10px 10px 5px #888; min-width:100px;position:relative;");
-    var tmpDiv=document.createElement('div');
-    var tmpHTML='<div id="hideFavsButton" style="position: absolute; right: 0px; top: 2px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();document.getElementById(\'BRlogFavs\').style.display=\'none\';}" style="border:2px solid #F30F27;padding:0px 8px;border-top-right-radius: 15px; border-bottom-left-radius: 5px;background-color:lightGrey;font-size:x-large;font-weight:900;color:red;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/close_pane.png"></a>'
-        +'</div>'
-        +'<span style="font-variant:small-caps; font-weight:bold;">'
-          +'<div style="float: left; padding-left: 20px; position: absolute;">'
-            +'<a href="javascript:{void(0);}" onclick="javascript:{addCustomFavorite();}" id="favoritesCustomAddToList" style="padding:4px;"><span class="fa_SP-stack"><i style="color: white; transform: translate(-6px, -9px); font-size: 3.7em;" class="fa_SP fa_SP-stack-2x"></i><i style="color: red; font-size: 1.6em;" class="fa_SP fa_SP-stack-2x fa_SP-heart"></i><i class="fa_SP fa_SP-stack-2x fa_SP-gift" style="color: rgb(5, 167, 5); transform: scaleX(-1) translate(-4px, 6px); font-size: 1.2em; text-shadow: 1px -1px rgb(255, 255, 255), 1px 1px rgb(255, 255, 255), -1px -1px rgb(255, 255, 255);"></i></span></a>'
-          +'</div>'
-        +'<center>'+SPLUi18n.FavoritesHeader+'</center>'
-        +'<br />'
-        +'</span>'
-        +'<div id="SPLU.FavoritesCustomNameDiv" style="display:none;"><input style="margin-bottom: 10px; margin-left: 23px;" id="SPLU.FavoritesCustomName" type="text"><div style="display: inline;"><a style="" href="javascript:{void(0);}" ><span style="transform: translate(-1px, 3px);" class="fa_SP-stack"><i style="color: white; transform: translate(0px, -3px); font-size: 1.4em;" class="fa_SP fa_SP-stack-2x fa_SP-square-sharp"></i><i style="font-size: 1.3em; color: black;" class="fa_SP fa_SP-stack-2x fa_SP-floppy2"></i></span></a></div></div>'
-        +'<div id="SPLU.FavoritesStatus"></div>'
-        +'<div id="SPLU.FavoritesList" style="overflow-y:auto; width:220px;"></div>'
-          +'<div style="margin-top:10px;"><a href="javascript:{void(0);}" onClick="javascript:{saveFavoritesOrder();}" class="SPLUbuttons" style="margin-right:6px;color:black;border:2px solid #249631">'+SPLUi18n.FavoritesOrderButtonSave+'</a>'
-          +'<div id="SPLU.FavoritesLowerStatus" style="display:inline;padding-left:5px;"></div>'
-          +'</div>'
-        +'</div>';
-
-    tmpDiv.innerHTML+=tmpHTML;
-    BRlogFavs.appendChild(tmpDiv);
-
-    var BRlogExpansions=document.createElement('div');
-    BRlogExpansions.id='BRlogExpansions';
-    BRlogExpansions.setAttribute("style","display:none; background-color: #B269FB; font-style:initial; color:white; padding: 13px;border:2px solid blue;border-radius:15px; box-shadow:10px 10px 5px #888; min-width:75px; max-width:250px;position:relative;");
-    var tmpDiv=document.createElement('div');
-    var tmpHTML='<div id="hideExpansionsButton" style="position: absolute; right: 0px; top: 2px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();document.getElementById(\'BRlogExpansions\').style.display=\'none\';}" style="border:2px solid blue;padding:0px 8px;border-top-right-radius: 15px; border-bottom-left-radius: 5px;background-color:lightGrey;font-size:x-large;font-weight:900;color:red;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/close_pane.png"></a>'
-        +'</div>'
-        +'<form name="BRexpLogForm">'
-          +'<center><b>'+SPLUi18n.ExpansionsHeader+'</b></center>'
-            +'<div style="display:table;width:250px;">'
-              +'<div style="display:table-row;">'
-                +'<div id="SPLU.ExpansionsHeading" style="display:table-cell;padding-bottom:5px;border-top:2px solid blue;border-top-left-radius:20px;border-top-right-radius:20px;">'
-                  +'<center>'
-                    +'<a href="javascript:{void(0);}" onClick="javascript:{showExpansionTab();}">'+SPLUi18n.ExpansionsTabExpansions+'</a>'
-                  +'</center>'
-                +'</div>'
-                +'<div id="SPLU.FamilyHeading" style="display:table-cell;padding-bottom:5px;border-top-left-radius:20px;border-top-right-radius:20px;">'
-                  +'<center>'
-                    +'<a href="javascript:{void(0);}" onClick="javascript:{showFamilyTab();}">'+SPLUi18n.ExpansionsTabFamily+'</a>'
-                  +'</center>'
-                +'</div>'
-              +'</div>'
-            +'</div>'
-            +'<div id="SPLU.ExpansionPane" style="overflow-y:auto;margin-top:10px;margin-bottom:10px;"></div>'
-            +'<div id="SPLU.FamilyPane" style="overflow-y:auto;margin-top:10px;margin-bottom:10px;display:none;"></div>'
-            +'<div id="SPLU.ExpansionPaneControls">'
-              +'<div style="padding-top:10px;">'+SPLUi18n.ExpansionsQuantity+': '
-                +'<div id="SPLU.fakeExpQtyBox" style="display:inline-block;padding:0px 2px; -moz-appearance:textfield; -webkit-appearance:textfield;">'
-                  +'<input type="text" id="BRexpPlayQTY"/ value="0" style="width:40px;border:none;color:black;">'
-                  +'<a href="javascript:{void(0);}" onClick="javascript:{saveExpansionQuantity();}" style="vertical-align:middle;" id="SPLU.SaveExpQtyButton"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/save.png"></a>'
-                +'</div>'
-                +'<div style="display:table; padding-top:10px;">'
-                  +'<div style="display:table-row;">'
-                    +'<div style="display:table-cell; padding-top:10px;">'
-                      +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();document.getElementById(\'BRlogExpansions\').style.display=\'none\';}" style="border:2px solid blue;padding:2px 4px;border-radius:5px;background-color:lightGrey;margin-top:10px;">'+SPLUi18n.ExpansionsButtonOkay+'</a>'
-                    +'</div>'
-                    +'<div style="display:table-cell; padding-top:10px; padding-left:10px;">'
-                      +'<a href="javascript:{void(0);}" onClick="javascript:{clearExpansions();}" style="border:2px solid blue;padding:2px 4px;border-radius:5px;background-color:lightGrey;margin-top:10px;">'+SPLUi18n.ExpansionsButtonClear+'</a>'
-                    +'</div>'
-                    +'<div id="SPLU.ExpansionsPaneStatus" style="display:table-cell; padding-top:10px; padding-left:10px;">'
-                  +'</div>'
-                +'</div>'
-              +'</div>'
-            +'</div>'
-          +'</form>';
-    tmpDiv.innerHTML+=tmpHTML;
-    BRlogExpansions.appendChild(tmpDiv);
-    
-    var BRlogLocations=document.createElement('div');
-    BRlogLocations.id='BRlogLocations';
-    BRlogLocations.setAttribute("style","display:none; background-color: #F5C86C; padding: 13px;border:2px solid #249631;border-radius:15px; box-shadow:10px 10px 5px #888; min-width:100px;position:relative;");
-    var tmpDiv=document.createElement('div');
-    var tmpHTML='<div id="hideLocationsButton" style="position: absolute; right: -2px; top: -3px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();document.getElementById(\'BRlogLocations\').style.display=\'none\';}" style="border:2px solid #249631;padding:0px 8px;border-top-right-radius: 15px; border-bottom-left-radius: 5px;background-color:lightGrey;font-size:x-large;font-weight:900;color:red;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/close_pane.png"></a>'
-        +'</div>'
-        +'<span style="font-variant:small-caps; font-weight:bold;">'
-        +'<center>'+SPLUi18n.LocationsHeader+'</center>'
-        +'<br/>'
-        +'</span>'
-        +'<div id="SPLU.LocationsList" style="overflow-y:auto;"></div>'
-        +'<div style="padding-top:10px;display:inline;">'
-        +'<a href="javascript:{void(0);}" class="SPLUbuttons" style="margin-right:6px;color:black;border:2px solid #249631">'+SPLUi18n.LocationsButtonSave+'</a>'
-        +'<a href="javascript:{void(0);}" class="SPLUbuttons" style="color:black; border:2px solid #249631">'+SPLUi18n.LocationsButtonNew+'</a>'
-        +'</div>'
-        +'<div id="SPLU.LocationsStatus" style="display:inline;padding-left:5px;"></div>';
-    tmpDiv.innerHTML+=tmpHTML;
-    BRlogLocations.appendChild(tmpDiv);
-
-    var BRlogPlayers=document.createElement('div');
-    BRlogPlayers.id='BRlogPlayers';
-    BRlogPlayers.setAttribute("style","display:none; background-color: #F7FB6F; padding: 13px;border:2px solid #00F; border-radius:15px; box-shadow:10px 10px 5px #888; min-width:275px;position:relative;");
-    var tmpDiv=document.createElement('div');
-    var tmpHTML='<div id="hidePlayersButton" style="position: absolute; right: -2px; top: -3px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();showPlayersTab();document.getElementById(\'BRlogPlayers\').style.display=\'none\';}" style="border:2px solid #00F;padding:0px 8px;border-top-right-radius: 15px; border-bottom-left-radius: 5px;background-color:lightGrey;font-size:x-large;font-weight:900;color:red;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/close_pane.png"></a>'
-        +'</div>'
-        +'<span style="font-variant:small-caps; font-weight:bold;">'
-        +'<center>'+SPLUi18n.PlayersHeader+'</center>'
-        +'<br/>'
-        +'</span>'
-        +'<div style="display: table; width: 254px;">'
-        +'<div style="display:table-row;">'
-        +'<div id="SPLU.PlayersHeading" style="display:table-cell; padding-bottom: 5px;border-top: 2px solid blue; border-top-left-radius: 20px; border-top-right-radius: 20px;">'
-        +'<center>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{showPlayersTab();}">'+SPLUi18n.PlayersTabPlayers+'</a>'
-        +'</center>'
-        +'</div>'
-        +'<div id="SPLU.FiltersHeading" style="display:table-cell; padding-bottom: 5px;border-top-left-radius: 20px; border-top-right-radius: 20px;">'
-        +'<center>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{showFiltersTab();}">'+SPLUi18n.PlayersTabFilters+'</a>'
-        +'</center>'
-        +'</div>'
-        +'<div id="SPLU.GroupsHeading" style="display:table-cell; padding-bottom: 5px;border-top-left-radius: 20px; border-top-right-radius: 20px;">'
-        +'<center>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{showGroupsTab();}">'+SPLUi18n.PlayersTabGroups+'</a>'
-        +'</center>'
-        +'</div>'
-        +'</div>'
-        +'<div style="display:table-row;">'
-        +'<div id="SPLU.PlayersSubHeading" style="display: table-cell; height: 15px;">'
-        +'<div id="SPLU.FiltersDeleteCell" style="display:none;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{removeFilter();}" style="vertical-align:middle; padding-right:5px;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/delete_row_small.png"></a>'
-        +'</div>'
-        +'<div id="SPLU.GroupsDeleteCell" style="display:none;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{removeGroup();}" style="vertical-align:middle; padding-right:5px;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/delete_row_small.png"></a>'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLU.FiltersSubHeading" style="display: table-cell;">'
-        +'<center>'
-        +'<select id="SPLU.FiltersSubSelect" style="margin:2px;display:none;" onChange="javascript:{setFilter(\'edit\');}"></select>'
-        +'</center>'
-        +'</div>'
-        +'<div id="SPLU.GroupsSubHeading" style="display: table-cell;">'
-        +'<center>'
-        +'<select id="SPLU.GroupsSubSelect" style="margin:2px;display:none;" onChange="javascript:{setGroup(\'edit\');}"></select>'
-        +'</center>'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLUgroupsFilterRow" style="display:none;">'
-        +'</div>'
-        +'</div>'
-        +'<div style="display:table;">'
-        +'<div style="display:table-row;">'
-        +'<div style="display:table-cell;width:22px;">'
-        +'</div>'
-        +'<div style="display:table-cell;width:84px;"><center>'+SPLUi18n.PlayersName+' <a onclick=\"javascript:{ELsort.sort(ELsort.toArray().sort(function (a, b) {return a.toLowerCase().localeCompare(b.toLowerCase());}))}\" href=\"javascript:{void(0);}\"><i class=\"fa_SP fa_SP-sort-alpha-asc\"></i></a></center></div>'
-        +'<div style="display:table-cell;width:84px;"><center>'+SPLUi18n.PlayersUsername+'</center></div>'
-        +'<div style="display:table-cell;width:52px;" name="SPLUplayerEditColumn"><center>'+SPLUi18n.PlayersColor+'</center></div>'
-        +'<div style="display:none;width:64px;" name="SPLUplayerFilterColumn"></div>'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLU.PlayersList" style="overflow-y:auto; width: 280px;"></div>'
-        +'<div id="SPLU.PlayersPaneControls">'
-        +'<div style="padding-top:10px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{savePlayers();}" class="SPLUbuttons" style="margin-right:6px;color:black;" id="SavePlayerListBtn">'+SPLUi18n.PlayersButtonSave+'</a>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{addPlayer();}" class="SPLUbuttons" style="color:black;">'+SPLUi18n.PlayersButtonNew+'</a>'
-        +'</div>'
-        +'<div id="SPLU.PlayersStatus" style="display:inline;padding-left:5px;">'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLU.FiltersPaneControls" style="display:none;">'
-        +'<div style="padding-top:10px;">'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{saveFilters();}" class="SPLUbuttons" style="margin-right:6px;color:black;" id="SavePlayerFilterBtn">'+SPLUi18n.PlayersButtonSaveFilters+'</a>'
-        +'<div id="SPLU.fakeFilterBox" style="display:inline-block;padding:0px 2px; -moz-appearance:textfield; -webkit-appearance:textfield;">'
-        +'<input type="text" id="SPLU.NewFilterName" placeholder="'+SPLUi18n.PlayersPlaceholderAddFilter+'" style="width:100px;border:none;"></input>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{addFilter();}" style="color:black;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/green_circle_plus.png"></a>'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLU.FiltersStatus" style="display:inline;padding-left:5px;"></div>'
-        +'</div>'
-        +'<div id="SPLU.GroupsPaneControls" style="display:none;">'
-        +'<div style="padding-top:10px;"><a href="javascript:{void(0);}" onClick="javascript:{saveGroups();}" class="SPLUbuttons" style="margin-right:6px;color:black;" id="SavePlayerGroupsBtn">'+SPLUi18n.PlayersButtonSaveGroups+'</a>'
-        +'<div id="SPLU.fakeGroupBox" style="display:inline-block;padding:0px 2px; -moz-appearance:textfield; -webkit-appearance:textfield;">'
-        +'<input type="text" id="SPLU.NewGroupName" placeholder="'+SPLUi18n.PlayersPlaceholderAddGroup+'" style="width:100px;border:none;"></input>'
-        +'<a href="javascript:{void(0);}" onClick="javascript:{addGroup();}" style="color:black;"><img src="https://yucata-de.github.io/YucataPlayLoggerForBGG/Images/green_circle_plus.png"></a>'
-        +'</div>'
-        +'</div>'
-        +'<div id="SPLU.GroupsStatus" style="display:inline;padding-left:5px;"></div>'
-        +'</div>';
-    tmpDiv.innerHTML+=tmpHTML;
-    BRlogPlayers.appendChild(tmpDiv);
-
     var BRlogPlays=document.createElement('div');
     BRlogPlays.id='BRlogPlays';
     BRlogPlays.setAttribute("style","display:none; background-color: #F1F8FB; padding: 13px;border:2px solid #249631;border-radius:15px; box-shadow:10px 10px 5px #888; min-width:100px;position:relative;");
@@ -695,11 +497,6 @@
     BRlogPlays.appendChild(tmpDiv);
     
     BRlogRow.appendChild(BRlogDiv);
-    BRlogRow.appendChild(BRlogSettings);
-    BRlogRow.appendChild(BRlogExpansions);
-    BRlogRow.appendChild(BRlogFavs);
-    BRlogRow.appendChild(BRlogLocations);
-    BRlogRow.appendChild(BRlogPlayers);
     BRlogRow.appendChild(BRlogPlays);
     BRlogMain.appendChild(BRlogRow);
     document.getElementById('SPLUmain').insertBefore(BRlogMain,document.getElementById('SPLUmain').firstChild);
@@ -787,7 +584,6 @@
     }
     
     getGameID();
-    loadGroups();
     setPlayers("reset");
     setLocation("reset");
   }
@@ -1140,21 +936,6 @@
       }
       for(key=0;key<groups.length;key++){
         BRtmpName=decodeURIComponent(groups[key]);
-      }
-    }
-  }
-  function loadGroups(){
-    var select=document.getElementById('SPLU.GroupsSubSelect');
-    select.options.length=0;
-    var i=0;
-    for(var key in SPLU.Groups){
-      if (SPLU.Groups.hasOwnProperty(key)) {
-        if(SPLUcurrentGroup==key){
-          select.options[i]=new Option(key, key, false, true);
-        }else{
-          select.options[i]=new Option(key, key, false, false);
-        }
-        i++;
       }
     }
   }
