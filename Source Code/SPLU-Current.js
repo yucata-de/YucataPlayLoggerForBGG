@@ -151,15 +151,6 @@
     const tmpReturn = {"response":response, "data":data };
     return tmpReturn;
   }
-
-  async function fetchDataCSV(url, options) {
-    const response = await fetch(url, options);
-    console.log("fetchDataCSV() - response: ", response);
-    const data = await response.text();
-    console.log("fetchDataCSV() - data: ", data);
-    const tmpReturn = {"response":response, "data":data };
-    return tmpReturn;
-  }
   
   async function runQueue(){
     if (SPLUqueue.length == 0){
