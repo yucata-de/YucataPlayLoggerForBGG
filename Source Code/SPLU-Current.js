@@ -223,12 +223,6 @@
     tmpDiv.style.padding="3px";
     document.getElementById("SPLUmain").appendChild(tmpDiv);
 
-    //Insert code for SortableJS https://github.com/SortableJS/Sortable
-    var sortscript=document.createElement('script');
-    sortscript.type="text/javascript";
-    sortscript.src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/scripts/sortable.js';
-    document.body.appendChild(sortscript);
-
     var style=document.createElement('style');
     style.type='text/css';
     style.id="BRstyle";
