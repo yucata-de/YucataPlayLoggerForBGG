@@ -1089,6 +1089,8 @@ function saveMultipleGamePlays(file) {
         return 3886;
       case 101: // Mount Drago
         return 89918;
+      case 377: // Murano
+        return 163413;
       case 318: // Mystic Vale
         return 194607;
       case 139: // Nations: The Dice Game
@@ -1237,6 +1239,8 @@ function saveMultipleGamePlays(file) {
         return 218920;
       case 24: // Vikings
         return 27173;
+      case 351: // Villagers
+        return 241724;
       case 99: // Vinci
         return 60;
       case 110: // Völuspá
