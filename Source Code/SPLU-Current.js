@@ -1,4 +1,4 @@
-// SPLU 5.8.1 Alpha/Beta/Current
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.0";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -42,12 +42,12 @@
         '.log_entry_type--error { color: red;}' +
         '#saveMultipleGamePlaysBtn { border:2px solid green;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black; }' +
         '#stop_processing_btn { border:2px solid red;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;margin-left:0.2em; visibility:hidden; }' +
-        '#activity_indicator { display: inline-block; vertical-align: top; margin-left: 0.5em; }';
+        '#activity_indicator { display: inline-block; vertical-align: top; margin-left: 0.5em; }' +
+        '.program_version_id { float: right; font-size: 0.8em; margin-top: 0.8em; }';
 
 
       document.getElementsByTagName('head')[0].appendChild(style);
     }
-    
     var LoggedInAs="";
     //var LoggedInAs = document.getElementsByClassName('menu_login')[0].childNodes[3].childNodes[1].innerHTML;
     //Check if the user is logged in to BGG, throw an error if not
@@ -313,6 +313,11 @@
         + '<span id="log__placeholder">Either drop your file with the yucata plays into to box above or select it via<br>the file selector and then click the button!</span>'
         +'</div>'
       +'</div>'
+
+      +'<div class="program_version_id">version ' + YUCATA_PLAY_LOGGER_FOR_BGG_VERSION
+      +'</div>'
+
+
 
     +'</div>'
     +'<div style="display:table;">'
