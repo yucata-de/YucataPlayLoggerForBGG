@@ -601,7 +601,7 @@ function saveMultipleGamePlays(file) {
 
   function getOldPlaysNextPage() {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://www.boardgamegeek.com/xmlapi2/plays?username=" + bggLoggedInUser + "&page=" + iPage);
+    xhr.open("GET", "https://www.boardgamegeek.com/xmlapi2/plays?username=" + bggLoggedInUser + "&page=" + iPage + "&" + ((new Date()).getTime())); // time parameter to bypass browser cache
     xhr.onreadystatechange = handleGetOldPlaysReadystatechange;
     if (iTooManyRequestsError > TOO_MANY_REQUESTS_ERROR_THRESHOLD) {
       iTooManyRequestsError = 1;
