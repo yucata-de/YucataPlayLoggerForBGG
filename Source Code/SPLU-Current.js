@@ -337,12 +337,48 @@
     });
   }
 
-
-
-
-
-
-
+  function resetSettings(){
+    SPLU.Settings={
+      "i18n": "en",
+      "DateField":{"Visible":true,"Reset":true},
+      "LocationField":{"Visible":true,"Reset":true},
+      "LocationList":{"Visible":true,"Reset":true},
+      "QuantityField":{"Visible":true,"Reset":true},
+      "DurationField":{"Visible":true,"Reset":true},
+      "IncompleteField":{"Visible":true,"Reset":true},
+      "NoWinStatsField":{"Visible":true,"Reset":true},
+      "CommentsField":{"Visible":true,"Reset":true,"Width":"315px","Height":"110px"},
+      "GameField":{"Visible":true},
+      "PlayerList":{"Visible":true},
+      "PlayerNameColumn":{"Visible":true,"Reset":false},
+      "PlayerUsernameColumn":{"Visible":true,"Reset":false},
+      "PlayerColorColumn":{"Visible":true,"Reset":false},
+      "PlayerPositionColumn":{"Visible":true,"Reset":true},
+      "PlayerScoreColumn":{"Visible":true,"Reset":true},
+      "PlayerRatingColumn":{"Visible":true,"Reset":true},
+      "PlayerWinColumn":{"Visible":true,"Reset":true},
+      "PlayerNewColumn":{"Visible":true,"Reset":true},
+      "SummaryTextField":{"Visible":true},
+      "PopUpText":{"Visible":true},
+      "WinComments":{"Visible":false},
+      "ExpansionComments":{"Visible":false},
+      "DomainButtons":{"Visible":false},
+      "ExpansionQuantity":{"Value":"0"},
+      "ExpansionDetails":{"Include":true},
+      "ExpansionComments":{"Visible":false},
+      "ExpansionLinkParent":{"Enabled":false},
+      "SortPlayers":{"Order":"none"},
+      "SortGroups":{"Order":"none"},
+      "PlayerFilters":{"Visible":false},
+      "PlayerGroups":{"Visible":false},
+      "TwitterField":{"Enabled":false,"Visible":false,"Reset":true},
+      "ExpansionWinStats":{"Enabled":false},
+      "DefaultPlayer":{"Name":"-blank-"},
+      "DefaultLocation":{"Name":"-blank-"},
+      "Favorites":{"ThumbSize":"tallthumb"},
+      "FetchPlayCount":{"Enabled":false}
+    }
+  }
 
   function verifyData(){
     SPLUverifySave=false;
