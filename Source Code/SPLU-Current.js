@@ -55,6 +55,7 @@
     var SPLUversion="5.8.1";
 
     var SPLU={};
+    resetSettings();
     var SPLUplayId="";
 
     var NumOfPlayers=0;
@@ -134,7 +135,6 @@
     var SPLUqueueRunning = false;
     var SPLUqueueSaveAfter = false;
     var SPLUqueueFetchImageCount = 0;
-   
 
   async function fetchDataJSON(url, options) {
     const response = await fetch(url, options);
@@ -380,118 +380,6 @@
     }
   }
 
-  function verifyData(){
-    SPLUverifySave=false;
-    SPLUverifyDefaultPlayer=false;
-    for (var key in SPLU.Players) {
-      if (SPLU.Players.hasOwnProperty(key)) {
-        //console.log(key);
-        if (SPLU.Settings.DefaultPlayer.Name==key){
-          SPLUverifyDefaultPlayer=true;
-          //console.log("Default Player Found: "+key);
-        }
-      }
-    }
-    for (var key in SPLU.Groups) {
-      if (SPLU.Groups.hasOwnProperty(key)) {
-        //console.log(key);
-        if (SPLU.Settings.DefaultPlayer.Name=="group-"+key){
-          SPLUverifyDefaultPlayer=true;
-          //console.log("Default Player Found: group-"+key);
-        }
-      }
-    }
-    if (!SPLUverifyDefaultPlayer){
-      console.log("Default Player not found, resetting to -blank-");
-      SPLU.Settings.DefaultPlayer.Name="-blank-";
-      SPLUverifySave=true;
-    }
-    try{
-      if (SPLU.Locations[SPLU.Settings.DefaultLocation.Name]===undefined && SPLU.Settings.DefaultLocation.Name != "-blank-"){
-        console.log("location not found, setting to -blank-");
-        SPLU.Settings.DefaultLocation = {};
-        SPLU.Settings.DefaultLocation.Name="-blank-";
-        SPLUverifySave=true;
-      }else{
-        //console.log("location found: "+SPLU.Settings.DefaultLocation.Name);
-      }
-    }catch(err){
-          console.log(err)
-    }
-    // Look for Location names that can't be decoded and remove the %'s so that the user can fix them manually.
-    for (var keyL in SPLU.Locations) {
-      try{
-        decodeURIComponent(SPLU.Locations[keyL].Name);
-      }catch(err){
-        console.log(err);
-        SPLU.Locations[keyL].Name = SPLU.Locations[keyL].Name.replace(/%/g, "");
-        SPLUverifySave=true;
-      }
-    }
-    for (var keyG in SPLU.Groups) {
-      if (SPLU.Groups.hasOwnProperty(keyG)) {
-        //console.log(keyG);
-        for (i=SPLU.Groups[keyG].length-1; i>=0; i--){
-          //console.log(" - "+SPLU.Groups[keyG][i]);
-          var SPLUtmpVerify=false;
-          for (var key in SPLU.Players) {
-            if (SPLU.Players.hasOwnProperty(key)) {
-              if (SPLU.Groups[keyG][i]==key){
-                SPLUtmpVerify=true;
-                //console.log("Group Player Found: "+key);
-                break;
-              }
-            }
-          }
-          if (!SPLUtmpVerify){
-            console.log("Group Player Not Found, Removing");
-            SPLU.Groups[keyG].splice(i, 1);
-            SPLUverifySave=true;
-          }
-        }
-      }
-    }
-    for (var keyF in SPLU.Filters) {
-      if (SPLU.Filters.hasOwnProperty(keyF)) {
-        //console.log(keyF);
-        for (i=SPLU.Filters[keyF].length-1; i>=0; i--){
-          //console.log(" - "+SPLU.Filters[keyF][i]);
-          var SPLUtmpVerify=false;
-          for (var key in SPLU.Players) {
-            if (SPLU.Players.hasOwnProperty(key)) {
-              if (SPLU.Filters[keyF][i]==key){
-                SPLUtmpVerify=true;
-                //console.log("Filter Player Found: "+key);
-                break;
-              }
-            }
-          }
-          for (var key in SPLU.Groups) {
-            if (SPLU.Groups.hasOwnProperty(key)) {
-              if (SPLU.Filters[keyF][i]=="group-"+key){
-                SPLUtmpVerify=true;
-                //console.log("Filter Player Found: group-"+key);
-                break;
-              }
-            }
-          }
-          if (!SPLUtmpVerify){
-            console.log("Filter Player Not Found, Removing");
-            SPLU.Filters[keyF].splice(i, 1);
-            SPLUverifySave=true;
-          }
-        }
-      }
-    }
-    if (SPLUverifySave){
-      console.log("Invalid data found and removed. Settings need to be saved.");
-      //document.getElementById('BRresults').innerHTML=SPLUi18n.StatusInvalidDataFoundandRemoved;
-      return true;
-    }else{
-      console.log("Settings look fine.");
-      return false;
-    }
-  }  
   function fetchSaveData(){
     //document.getElementById("BRresults").innerHTML="Fetching save data.";
     //window.setTimeout(function(){ document.getElementById("BRresults").innerHTML=""; }, 900);
@@ -539,7 +427,7 @@
               //tmp2=this.responseXML;
               SPLUplayId=JSON.parse(xmlhttp.response).playid
               //SPLUplayId=tmp2.getElementsByTagName("play")[0].id;
-              fetchLanguageFileQ(SPLU.Settings.i18n);
+              fetchLanguageFileQ("en");
             //};
             //oReq2.open("get", "/xmlapi2/plays?username="+LoggedInAs+"&mindate=1452-04-15&maxdate=1452-04-15&id=98000", true);
             //oReq2.send();
@@ -554,7 +442,6 @@
       }else{
         SPLU=JSON.parse(tmp.plays[0].comments.value);
         //Check for invalid data
-        var invalidData = verifyData();
         SPLUplayId=tmp.plays[0].playid;
         SPLUremote=SPLU;
         if(SPLUversion != SPLU.Version){
@@ -567,11 +454,7 @@
             fetchLanguageFileQ(SPLU.Settings.i18n);
           });
         }else{
-          fetchLanguageFileQ(SPLU.Settings.i18n);
-          //Update the saved data if invalid settings were found, but we don't need to if we've updated the version as it will save the new data anyways.
-          if (invalidData){
-            saveSooty("BRresults",SPLUi18n.StatusThinking,SPLUi18n.StatusInvalidDataFoundandRemoved,function(){});
-          }
+          fetchLanguageFileQ("en");
         }
       }
       SPLUremote=SPLU;
