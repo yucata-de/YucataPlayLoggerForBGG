@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.1";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.2";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1011,6 +1011,8 @@ function saveMultipleGamePlays(file) {
         return 21791;
       case 8: // Morris
         return 3886;
+      case 378: // Mottainai
+        return 175199;
       case 101: // Mount Drago
         return 89918;
       case 377: // Murano
@@ -1183,6 +1185,8 @@ function saveMultipleGamePlays(file) {
         return 434;
       case 300: // Yucata2
         return 434;
+      case 382: // Zola
+        return 331666;
       case 95: // Zooloretto the dice game
         return 117942;
       default:
