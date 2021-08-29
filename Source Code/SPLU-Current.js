@@ -52,7 +52,7 @@
     //var LoggedInAs = document.getElementsByClassName('menu_login')[0].childNodes[3].childNodes[1].innerHTML;
     //Check if the user is logged in to BGG, throw an error if not
     //if(LoggedInAs==""){alert("You aren't logged in.");throw new Error("You aren't logged in.");}
-    var SPLUversion="5.8.1";
+    var SPLUversion="5.8.2";
 
     var SPLU={};
     resetSettings();
@@ -449,18 +449,7 @@
         //Check for invalid data
         SPLUplayId=tmp.plays[0].playid;
         SPLUremote=SPLU;
-        if(SPLUversion != SPLU.Version){
-          console.log("Different Versions");
-          compareSPLU();
-          SPLU.Version=SPLUversion;
-          delete SPLU.GameStats;
-          tmp=SPLUi18n.StatusVersionUpdatedTo+SPLU.Version;
-          saveSooty("BRresults",SPLUi18n.StatusUpdatingVersion,tmp,function(){
-            fetchLanguageFileQ(SPLU.Settings.i18n);
-          });
-        }else{
-          fetchLanguageFileQ("en");
-        }
+        fetchLanguageFileQ("en");
       }
       SPLUremote=SPLU;
     };
