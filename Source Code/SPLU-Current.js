@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.3";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.4";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -813,6 +813,8 @@ function saveMultipleGamePlays(file) {
         return 79828;
       case 41: // Alchemist
         return 27385;
+      case 340: // Ali Baba
+        return 233960;
       case 88: // Antike Duellum
         return 104955;
       case 334: // Argo
@@ -905,6 +907,8 @@ function saveMultipleGamePlays(file) {
         return 158947;
       case 44: // Fearsome Floors
         return 7805;
+      case 372: // Fields of Arle
+        return 159675;
       case 52: // Finca
         return 40628;
       case 76: // Firenze
@@ -989,6 +993,8 @@ function saveMultipleGamePlays(file) {
         return 260757;
       case 302: // Lords of War
         return 135215;
+      case 374: // Lost Ruins of Arnak
+        return 312484;
       case 362: // Lorenzo
         return 203993;
       case 75: // Luna
@@ -1001,6 +1007,8 @@ function saveMultipleGamePlays(file) {
         return 40425;
       case 22: // Masons
         return 21791;
+      case 385: // Monster Baby Rescue
+        return 282131;
       case 8: // Morris
         return 3886;
       case 378: // Mottainai
