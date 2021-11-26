@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.4";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.5";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1166,6 +1166,8 @@ function saveMultipleGamePlays(file) {
       case 317: // Valletta
         return 218920;
       case 24: // Vikings
+        return 27173;
+      case 383: // Vikings2
         return 27173;
       case 351: // Villagers
         return 241724;
