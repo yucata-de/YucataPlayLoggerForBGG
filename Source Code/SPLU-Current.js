@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.5";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.6";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1149,6 +1149,8 @@ function saveMultipleGamePlays(file) {
         return 88;
       case 347: // Transatlantic
         return 163805;
+      case 364: // Triad
+        return 251722;
       case 54: // Trias
         return 4249;
       case 129: // Twin Tin Bots
