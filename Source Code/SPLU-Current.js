@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.7";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.8";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -847,6 +847,8 @@ function saveMultipleGamePlays(file) {
         return 5716;
       case 70: // Bangkok Klongs
         return 82424;
+      case 387: // Beta Colony
+        return 235533;
       case 59: // Black Friday
         return 39242;
       case 380: // Bonfire
@@ -959,6 +961,8 @@ function saveMultipleGamePlays(file) {
         return 255674;
       case 47: // Industrial Waste
         return 2476;
+      case 384: // Innovation
+        return 63888;
       case 108: // Jaipur
         return 54043;
       case 20: // Just 4 Fun
@@ -1005,6 +1009,8 @@ function saveMultipleGamePlays(file) {
         return 55670;
       case 336: // Machi Koro
         return 143884;
+      case 373: // Magnastorm
+        return 257067;
       case 57: // Maori
         return 40425;
       case 22: // Masons
