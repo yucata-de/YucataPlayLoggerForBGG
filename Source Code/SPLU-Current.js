@@ -157,7 +157,7 @@
     } else {
       SPLUqueueRunning = true;
       console.log("runQueue() - Queue has "+SPLUqueue.length+" items in it, running.");
-      let tmpQueue = SPLUqueue.shift();
+      tmpQueue = SPLUqueue.shift();
       if (tmpQueue.attempt >= 2) {
         //Too many failed attempts, move queue item to SPLUqueueFails
         console.log("runQueue() - Too many failed attempts, moving to SPLUQueueFails");
