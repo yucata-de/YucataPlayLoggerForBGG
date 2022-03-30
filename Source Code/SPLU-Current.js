@@ -239,9 +239,9 @@
     BRlogDiv.setAttribute("style","display:table-cell; background-color: #A4DFF3; padding: 13px;border:2px solid blue;border-radius:15px; box-shadow:10px 10px 5px #888;position:relative;");
     
     tmpDiv=document.createElement('div');
-    tmpHTML= '<div id="closeButton" style="position:absolute;top:-2px;right:0px;">'
-              +'<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();BRlogMain.parentNode.removeChild(BRlogMain);}" style="border-bottom:2px solid blue;border-left:2px solid blue;padding:0px 10px;border-bottom-left-radius:5px;border-top-right-radius:15px;background-color:lightGrey;font-size:large;font-weight:900;color:red;">X</a>'
-            +'</div>';
+    tmpHTML= '<div id="closeButton" style="position:absolute;top:-2px;right:0px;">' +
+      '<a href="javascript:{void(0);}" onClick="javascript:{hidePopText();BRlogMain.parentNode.removeChild(BRlogMain);}" style="border-bottom:2px solid blue;border-left:2px solid blue;padding:0px 10px;border-bottom-left-radius:5px;border-top-right-radius:15px;background-color:lightGrey;font-size:large;font-weight:900;color:red;">X</a>' +
+      '</div>';
     tmpDiv.innerHTML+=tmpHTML;
     BRlogDiv.appendChild(tmpDiv);
 
@@ -267,70 +267,70 @@
     daybeforeText=SPLUi18n['Calendar'+daybeforeText];
     
     var tmpDiv=document.createElement('div');
-    var tmpHTML='<div style="display:table;">'
-      +'</div>'
-    +'</div>'
-    +'</div>'
-  +'</div>'
-    +'<div style="display:table; margin-top:15px;">'
+    var tmpHTML='<div style="display:table;">' +
+      '</div>' +
+    '</div>' +
+    '</div>' +
+  '</div>' +
+    '<div style="display:table; margin-top:15px;">' +
 
-      +'<div>'
-        +'<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">Yucata Play File Drop Zone</div>'
-      +'</div>'
+      '<div>' +
+        '<div class="file_drop_zone" ondrop="fileDropHandler(event);" ondragover="fileDragOverHandler(event);">Yucata Play File Drop Zone</div>' +
+      '</div>' +
 
-      +'<div class="progress_indicator">'
-        +'<div id="progress_indicator__progress"></div>'
-        +'<div class="progress_indicator__border"></div>'
-      +'</div>'
-      +'<div id="activity_indicator">/</div>'
+      '<div class="progress_indicator">' +
+        '<div id="progress_indicator__progress"></div>' +
+        '<div class="progress_indicator__border"></div>' +
+      '</div>' +
+      '<div id="activity_indicator">/</div>' +
 
-      +'<div>'
-        +'<div class="BRcells">'
-          +'<div>'
-            +'<input id="saveMultipleGamePlaysUpload" type="file" />'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Add Plays to BGG</a>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{stopProcessing();}" id="stop_processing_btn">Stop</a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells" id="SPLUeditPlayDiv" style="display:none;">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{saveGamePlay(\'edit\');}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="EditGamePlayBtn" onMouseOver="makeSentence();" onMouseOut="hideSentence();"><span style="" class="fa_SP-stack"><i class="fa_SP fa_SP-pencil display:block fa_SP-stack-2x fa_SP-flip-horizontal" style="font-size: 1.6em; text-align: center; text-shadow: 0px 0px 0px; transform: rotate(271deg); color: rgb(176, 115, 4);"></i><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; font-style: italic; font-size: 1.65em; opacity: 0.89; text-shadow: 1px 0px 0px rgb(20, 92, 6); transform: translate(-2.5px, 3px) rotate(-13deg);"></i></span>'+SPLUi18n.MainButtonSubmitEdits+'</a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells" id="SPLUdeletePlayDiv" style="display:none;">'
-          +'<div>'
-            +'<a href="javascript:{void(0);}" onClick="javascript:{deleteGamePlay();}" style="border:2px solid blue;padding:5px 5px;border-radius:5px;background-color:lightGrey; color:black;" id="DeleteGamePlayBtn";><i class="fa_SP fa_SP-trash display:block" style="text-align: center; font-size: 1.6em; vertical-align: middle; transform: translate(0px, -1px);"></i></a>'
-          +'</div>'
-        +'</div>'
-        +'<div class="BRcells">'
-          +'<div id="SPLUexpansionResults"></div>'
-        +'</div>'
-      +'</div>'
+      '<div>' +
+        '<div class="BRcells">' +
+          '<div>' +
+            '<input id="saveMultipleGamePlaysUpload" type="file" />' +
+          '</div>' +
+        '</div>' +
+        '<div class="BRcells">' +
+          '<div>' +
+            '<a href="javascript:{void(0);}" onClick="javascript:{saveMultipleGamePlays();}" id="saveMultipleGamePlaysBtn" ><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; text-shadow: 1px 1px 1px rgb(20, 92, 6); font-style: italic; font-size: 1.65em; transform: translate(-3.5px, -1px) rotate(-13deg);"></i>Add Plays to BGG</a>' +
+            '<a href="javascript:{void(0);}" onClick="javascript:{stopProcessing();}" id="stop_processing_btn">Stop</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="BRcells" id="SPLUeditPlayDiv" style="display:none;">' +
+          '<div>' +
+            '<a href="javascript:{void(0);}" onClick="javascript:{saveGamePlay(\'edit\');}" style="border:2px solid blue;padding:5px 4px;border-radius:5px;background-color:lightGrey; color:black;" id="EditGamePlayBtn" onMouseOver="makeSentence();" onMouseOut="hideSentence();"><span style="" class="fa_SP-stack"><i class="fa_SP fa_SP-pencil display:block fa_SP-stack-2x fa_SP-flip-horizontal" style="font-size: 1.6em; text-align: center; text-shadow: 0px 0px 0px; transform: rotate(271deg); color: rgb(176, 115, 4);"></i><i class="fa_SP fa_SP-check display:block" style="color: rgb(33, 177, 45); vertical-align: middle; text-align: center; font-style: italic; font-size: 1.65em; opacity: 0.89; text-shadow: 1px 0px 0px rgb(20, 92, 6); transform: translate(-2.5px, 3px) rotate(-13deg);"></i></span>'+SPLUi18n.MainButtonSubmitEdits+'</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="BRcells" id="SPLUdeletePlayDiv" style="display:none;">' +
+          '<div>' +
+            '<a href="javascript:{void(0);}" onClick="javascript:{deleteGamePlay();}" style="border:2px solid blue;padding:5px 5px;border-radius:5px;background-color:lightGrey; color:black;" id="DeleteGamePlayBtn";><i class="fa_SP fa_SP-trash display:block" style="text-align: center; font-size: 1.6em; vertical-align: middle; transform: translate(0px, -1px);"></i></a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="BRcells">' +
+          '<div id="SPLUexpansionResults"></div>' +
+        '</div>' +
+      '</div>' +
 
-      +'<div>'
-        +'<div id="log_area">'
-        + '<span id="log__placeholder">Either drop your file with the yucata plays into to box above or select it via<br>the file selector and then click the button!</span>'
-        +'</div>'
-      +'</div>'
+      '<div>' +
+        '<div id="log_area">' +
+        '<span id="log__placeholder">Either drop your file with the yucata plays into to box above or select it via<br>the file selector and then click the button!</span>' +
+        '</div>' +
+      '</div>' +
 
-      +'<div class="program_version_id">version ' + YUCATA_PLAY_LOGGER_FOR_BGG_VERSION
-      +'</div>'
+      '<div class="program_version_id">version ' + YUCATA_PLAY_LOGGER_FOR_BGG_VERSION +
+      '</div>' +
 
 
 
-    +'</div>'
-    +'<div style="display:table;">'
-      +'<div style="display:table-row;">'
-        +'<div class="BRcells">'
-          +'<div id="SPLU.SummaryTextField" style="max-width:400px;">'
-        +'</div>'
-      +'</div>'
-    +'</div>'
-    +'</div>';  
+    '</div>' +
+    '<div style="display:table;">' +
+      '<div style="display:table-row;">' +
+        '<div class="BRcells">' +
+          '<div id="SPLU.SummaryTextField" style="max-width:400px;">' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '</div>';
     tmpDiv.innerHTML+=tmpHTML;
     BRlogForm.appendChild(tmpDiv);
     
@@ -385,7 +385,7 @@
       "DefaultLocation":{"Name":"-blank-"},
       "Favorites":{"ThumbSize":"tallthumb"},
       "FetchPlayCount":{"Enabled":false}
-    }
+    };
   }
 
   function fetchSaveData(){
@@ -426,14 +426,14 @@
             "playdate":"1452-04-15",
             "quantity":"0",
             "twitter":"false"
-          }
+          };
           xmlhttp=new XMLHttpRequest();
           xmlhttp.onload=function(){
             //var tmp2="";
             //var oReq2 = new XMLHttpRequest();
             //oReq2.onload = function(){
               //tmp2=this.responseXML;
-              SPLUplayId=JSON.parse(xmlhttp.response).playid
+              SPLUplayId=JSON.parse(xmlhttp.response).playid;
               //SPLUplayId=tmp2.getElementsByTagName("play")[0].id;
               fetchLanguageFileQ("en");
             //};
@@ -653,7 +653,7 @@ function saveMultipleGamePlays(file) {
           read.onloadend = function(){
               yucataPlays = JSON.parse(read.result).data;
               saveNewGamePlays(0);
-          }
+          };
         } else {
           addToLog(getLogEntry("Select a file containing the Yucata plays !", LOG_ENTRY_TYPE.ERROR));
           stopProcessing();
@@ -717,14 +717,14 @@ function saveMultipleGamePlays(file) {
       if (doStop !== true) {
         setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
       } else {
-        doStop = false
+        doStop = false;
       }
     } else if (aOldYucataGameIds.indexOf(oYucataPlay.GameId) !== -1) {
       addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Already logged   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.INFO));
       if (doStop !== true) {
         setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
       } else {
-        doStop = false
+        doStop = false;
       }
     } else {
       addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Creating new log entry   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.OK));
