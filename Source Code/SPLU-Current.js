@@ -18,14 +18,6 @@
     }
     //Check if SPLU is already open, throw an error if not
     if(document.getElementById('SPLUwindow')){throw new Error("YucataPlayLoggerForBGG Already Running");} else {
-      // Load javascript libs:
-      function includeJs(jsFilePath) {
-        var f = document.createElement("script");
-        f.type = "text/javascript";
-        f.src = jsFilePath;
-        document.body.appendChild(f);
-      }
-      // includeJs("https://localhost:8888/Source Code/scripts/jquery-3.2.1.js");
       // Load styles:
       var style=document.createElement('style');
       style.type='text/css';
