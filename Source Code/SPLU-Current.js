@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.9";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.10.0";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -361,7 +361,6 @@
       "SummaryTextField":{"Visible":true},
       "PopUpText":{"Visible":true},
       "WinComments":{"Visible":false},
-      "ExpansionComments":{"Visible":false},
       "DomainButtons":{"Visible":false},
       "ExpansionQuantity":{"Value":"0"},
       "ExpansionDetails":{"Include":true},
@@ -607,6 +606,7 @@ function saveMultipleGamePlays(file) {
   }
 
   function handleGetOldPlaysReadystatechange() {
+    var i;
     if (xhr.readyState === 4) {
       // Parse the XML response:
       var res = parseXml(xhr.responseText);
@@ -624,7 +624,7 @@ function saveMultipleGamePlays(file) {
             if (x.files.length == 0) {
               txt = "Select one or more files.";
             } else {
-              for (var i = 0; i < x.files.length; i++) {
+              for (i = 0; i < x.files.length; i++) {
                 txt += "<br><strong>" + (i+1) + ". file</strong><br>";
                 file = x.files[i];
                 if ('name' in file) {
@@ -651,7 +651,7 @@ function saveMultipleGamePlays(file) {
           stopProcessing();
         }
       } else {
-        for (var i = 0; i < res.childNodes[0].childNodes.length; i++) {
+        for (i = 0; i < res.childNodes[0].childNodes.length; i++) {
           if (res.childNodes[0].childNodes[i].nodeType !== 1 || res.childNodes[0].childNodes[i].getAttribute('location') !== "yucata.de") {
             continue;
           }
