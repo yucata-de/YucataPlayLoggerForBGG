@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.8";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.9.9";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -828,7 +828,6 @@ function saveMultipleGamePlays(file) {
       case 97: // At the Gates of Loyang
         return 39683;
       case 306: // Atacama2
-        return 144587;
       case 315: // Atacama3
         return 144587;
       case 91: // Atlantida
@@ -866,7 +865,6 @@ function saveMultipleGamePlays(file) {
       case 9: // Captn W. Kidd
         return 11765;
       case 21: // Carcassonne H&G
-        return 4390;
       case 141: // Carcassonne H&G2
         return 4390;
       case 150: // Carcassonne South Seas
@@ -876,7 +874,6 @@ function saveMultipleGamePlays(file) {
       case 329: // Carpe Diem
         return 245934;
       case 98: // Carson City
-        return 39938;
       case 143: // Carson City2
         return 39938;
       case 326: // Carson City Cards
@@ -927,8 +924,7 @@ function saveMultipleGamePlays(file) {
         return 2719;
       case 112: // Glen More
         return 66362;
-      case 23: // Gobang & Gomoku2
-        return 11929;
+      case 23: // Gobang & Gomoku
       case 358: // Gobang & Gomoku2
         return 11929;
       case 360: // Grand Austria Hotel
@@ -938,7 +934,6 @@ function saveMultipleGamePlays(file) {
       case 140: // Guildhall
         return 132372;
       case 11: // Hacienda
-        return 19100;
       case 312: // Hacienda2
         return 19100;
       case 355: // Hadara
@@ -992,7 +987,6 @@ function saveMultipleGamePlays(file) {
       case 149: // Las Vegas
         return 117959;
       case 311: // Lemminge
-        return 153004;
       case 361: // Lemminge2
         return 153004;
       case 352: // Lift Off
@@ -1084,14 +1078,13 @@ function saveMultipleGamePlays(file) {
       case 58: // Roll through the Ages
         return 37380;
       case 4: // Rose King
-        return 201;
       case 146: // Rose King2
         return 201;
       case 127: // Russian Railroads
-        return 144733;
       case 142: // Russian Railroads2
         return 144733;
       case 27: // Saint Petersburg
+      case 359: // Saint Petersburg2
         return 9217;
       case 123: // Santa Cruz
         return 118610;
@@ -1176,7 +1169,6 @@ function saveMultipleGamePlays(file) {
       case 317: // Valletta
         return 218920;
       case 24: // Vikings
-        return 27173;
       case 383: // Vikings2
         return 27173;
       case 351: // Villagers
@@ -1194,7 +1186,6 @@ function saveMultipleGamePlays(file) {
       case 37: // Yspahan
         return 22345;
       case 1: // Yucata
-        return 434;
       case 300: // Yucata2
         return 434;
       case 382: // Zola
