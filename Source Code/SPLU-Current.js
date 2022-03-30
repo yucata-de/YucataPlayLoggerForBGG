@@ -140,11 +140,11 @@
     var SPLUqueueFetchImageCount = 0;
 
   async function fetchDataJSON(url, options) {
-    const response = await fetch(url, options);
+    var response = await fetch(url, options);
     console.log("fetchDataJSON() - response: ", response);
-    const data = await response.json();
+    var data = await response.json();
     console.log("fetchDataJSON() - data: ", data);
-    const tmpReturn = {"response":response, "data":data };
+    var tmpReturn = {"response":response, "data":data };
     return tmpReturn;
   }
   
@@ -176,7 +176,7 @@
       } else {
         tmpQueue.attempt++;
         console.log("runQueue() - Attempt: "+tmpQueue.attempt);
-        const tmpReturn = await tmpQueue.action(tmpQueue.arguments);
+        var tmpReturn = await tmpQueue.action(tmpQueue.arguments);
         console.log("runQueue() - tmpReturn: ", tmpReturn);
         if (tmpReturn.response.status == "200") { 
           //return await tmpReturn.json()
@@ -485,8 +485,8 @@
     //This function is called by runQueue() when processing the queue item
     console.log("fetchLanguageFile() - ", tmpArgs);
     try {
-        const url = `https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/i18n/${tmpArgs.language}.json`;
-        const options = {};  //Setting headers here seems to trigger CORS
+        var url = `https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/i18n/${tmpArgs.language}.json`;
+        var options = {};  //Setting headers here seems to trigger CORS
         return await fetchDataJSON(url, options);
     } catch(e) {
       //This shows on bad URLs?
