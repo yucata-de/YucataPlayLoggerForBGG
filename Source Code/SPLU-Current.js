@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.10.0";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.0";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -476,7 +476,7 @@
     //This function is called by runQueue() when processing the queue item
     console.log("fetchLanguageFile() - ", tmpArgs);
     try {
-        var url = `https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/i18n/${tmpArgs.language}.json`;
+        var url = "https://yucata-de.github.io/YucataPlayLoggerForBGG/Source%20Code/i18n/".concat(tmpArgs.language, ".json");
         var options = {};  //Setting headers here seems to trigger CORS
         return await fetchDataJSON(url, options);
     } catch(e) {
