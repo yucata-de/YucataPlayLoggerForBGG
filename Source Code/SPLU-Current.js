@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.1";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.2";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -882,6 +882,8 @@ function saveMultipleGamePlays(file) {
         return 26162;
       case 50: // ConHex
         return 10989;
+      case 390: // CuBirds
+        return 245476;
       case 30: // Down Under
         return 32154;
       case 73: // Dragonheart
