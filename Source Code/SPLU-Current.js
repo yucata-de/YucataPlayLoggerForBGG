@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.2";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.3";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -705,7 +705,8 @@ function saveMultipleGamePlays(file) {
     var oYucataPlay = yucataPlays[oldYucataGameIdsIndex];
     var iBggGameId = yucataGameType2BggId(oYucataPlay.GameTypeId);
     if (iBggGameId === -1) {
-      addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Cannot map Yucata GameType " + oYucataPlay.GameTypeId + " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
+      addToLog(getYucataPlayLogEntry(oYucataPlay.GameId, oYucataPlay.GameTypeName, "Cannot map Yucata GameType " + oYucataPlay.GameTypeId +
+        " to BGG game id. Mapping not defined yet? Contact yucata.de admin !   ('" + oYucataPlay.CustomGameName + "')", LOG_ENTRY_TYPE.ERROR));
       if (doStop !== true) {
         setTimeout(function(){ saveNewGamePlays(oldYucataGameIdsIndex + 1); }, 10); // user setTimeout so progress indicator can be updated
       } else {
@@ -878,6 +879,8 @@ function saveMultipleGamePlays(file) {
         return 13928;
       case 120: // City Blocks
         return 138195;
+      case 396: // Citrus
+        return 145588;
       case 332: // Claim It
         return 26162;
       case 50: // ConHex
@@ -1011,6 +1014,8 @@ function saveMultipleGamePlays(file) {
         return 175199;
       case 101: // Mount Drago
         return 89918;
+      case 393: // Mountain Goats
+        return 305985;
       case 377: // Murano
         return 163413;
       case 318: // Mystic Vale
