@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.4";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.5";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1084,6 +1084,8 @@ function saveMultipleGamePlays(file) {
       case 127: // Russian Railroads
       case 142: // Russian Railroads2
         return 144733;
+      case 397: // Sagani
+        return 309105;
       case 27: // Saint Petersburg
         return 9217;
       case 359: // Saint Petersburg2
