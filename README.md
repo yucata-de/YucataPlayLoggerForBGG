@@ -8,7 +8,7 @@ This tool allows you to create play logs at *[BGG](https://www.boardgamegeek.com
 
 Follow these setps:
 1. **Download your *Yucata.de* plays into a local file**  
-Navigate to your *Yucata.de* "Game History" (`https://www.yucata.de/en/Ranking/<YourYucataUser>`). Select "All games" in the "Filter by game" dropdown menu. After the page has loaded, click on the download button in the top right of the screen. This will save all selected plays in a file called "`Download*`" (Chrome) or some other browser dependent name.
+Navigate to your *Yucata.de* "Game History" (`https://www.yucata.de/en/Ranking/<YourYucataUser>`). Select "All games" in the "Filter by game" dropdown menu. After the page has loaded, click on the download button in the top right of the screen. This will save all selected plays in a file called `yucataplays.json`.
 2. **Create a browser bookmark for running *YucataPlayLoggerForBGG***  
 Create some bookmark in your browser. Then edit it and change its target URL to:  
 "`javascript:{{document.SPLUcode="";document.SPLUxml="";var SPLUscript=document.createElement('script');SPLUscript.type="text/javascript";SPLUscript.src='https://yucata-de.github.io/YucataPlayLoggerForBGG/Source Code/SPLU-Current.js';document.body.appendChild(SPLUscript);};void(0); }`"  
