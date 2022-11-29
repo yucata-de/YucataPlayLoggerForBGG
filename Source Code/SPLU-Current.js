@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.5";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.6";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1072,6 +1072,8 @@ function saveMultipleGamePlays(file) {
         return 42452;
       case 344: // Red7
         return 161417;
+      case 398: // Renature
+        return 300001;
       case 34: // Richelieu
         return 5795;
       case 58: // Roll through the Ages
