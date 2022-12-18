@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.6";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.7";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1006,6 +1006,8 @@ function saveMultipleGamePlays(file) {
         return 40425;
       case 22: // Masons
         return 21791;
+      case 389: // Messina 1347
+        return 238799;
       case 385: // Monster Baby Rescue
         return 282131;
       case 8: // Morris
