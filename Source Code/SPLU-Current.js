@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.7";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.8";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -655,7 +655,7 @@ function saveMultipleGamePlays(file) {
           if (res.childNodes[0].childNodes[i].nodeType !== 1 || res.childNodes[0].childNodes[i].getAttribute('location') !== "yucata.de") {
             continue;
           }
-          var sComment = res.childNodes[0].childNodes[i].childNodes[3].getInnerHTML();
+          var sComment = res.childNodes[0].childNodes[i].childNodes[3].innerHTML;
           var urlStartIndex = sComment.indexOf("https://www.yucata.de/en/Game/");
           if (urlStartIndex === -1) {
             continue;
