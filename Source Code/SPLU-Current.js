@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.8";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.9";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1096,6 +1096,8 @@ function saveMultipleGamePlays(file) {
         return 156943;
       case 123: // Santa Cruz
         return 118610;
+      case 399: // Santa Monica
+        return 298065;
       case 87: // Santiago de Cuba
         return 104347;
       case 28: // Schotten Totten
