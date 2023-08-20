@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.9";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.10";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -955,6 +955,8 @@ function saveMultipleGamePlays(file) {
         return 2476;
       case 384: // Innovation
         return 63888;
+      case 403: // Innovation Ultimate
+        return 388367;
       case 108: // Jaipur
         return 54043;
       case 20: // Just 4 Fun
@@ -971,6 +973,8 @@ function saveMultipleGamePlays(file) {
         return 143175;
       case 357: // Key Harvest
         return 29839;
+      case 365: // Keyper
+        return 212516;
       case 84: // King of Siam
         return 29937;
       case 367: // Kraftwagen
@@ -1028,12 +1032,16 @@ function saveMultipleGamePlays(file) {
         return 144415;
       case 136: // Navegador
         return 66589;
+      case 376: // Newton
+        return 244711;
       case 366: // On the Underground
         return 281152;
       case 51: // One-Eye
         return 40234;
       case 324: // Oracle of Delphi
         return 193558;
+      case 392: // Order of the Gilded Compass
+        return 200924;
       case 31: // Oregon
         return 31497;
       case 14: // Othello
@@ -1134,6 +1142,8 @@ function saveMultipleGamePlays(file) {
         return 908;
       case 103: // Targi
         return 118048;
+      case 401: // Taverns of Tiefenthal
+        return 269207;
       case 319: // Terra Mystica
         return 120677;
       case 126: // The Castles of Burgundy
