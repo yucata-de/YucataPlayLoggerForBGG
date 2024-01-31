@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.11";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.12";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -887,6 +887,8 @@ function saveMultipleGamePlays(file) {
         return 10989;
       case 390: // CuBirds
         return 245476;
+      case 404: // Discordia
+        return 360206;
       case 30: // Down Under
         return 32154;
       case 73: // Dragonheart
@@ -1122,6 +1124,8 @@ function saveMultipleGamePlays(file) {
         return 20195;
       case 113: // Skyline
         return 121423;
+      case 405: // Skymines
+        return 359438;
       case 309: // Snowdonia
         return 119432;
       case 79: // Sobek
