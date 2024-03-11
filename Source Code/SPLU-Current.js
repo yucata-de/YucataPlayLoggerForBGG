@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.12";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.13";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -800,6 +800,8 @@ function saveMultipleGamePlays(file) {
 
   function yucataGameType2BggId(yucataGameType) {
     switch (yucataGameType) {
+      case 124: // 1911 Amundsen vs. Scott
+        return 124847;
       case 301: // 7 Steps
         return  161537;
       case 90: // A Few Acres of Snow
@@ -841,6 +843,8 @@ function saveMultipleGamePlays(file) {
         return 82424;
       case 387: // Beta Colony
         return 235533;
+      case 409: // Billabong
+        return  464;
       case 59: // Black Friday
         return 39242;
       case 380: // Bonfire
@@ -1090,6 +1094,8 @@ function saveMultipleGamePlays(file) {
         return 300001;
       case 34: // Richelieu
         return 5795;
+      case 407: // Roam
+        return 267319;
       case 58: // Roll through the Ages
         return 37380;
       case 395: // Rollecate
