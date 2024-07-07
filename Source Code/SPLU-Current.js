@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.13";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.14";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -889,6 +889,8 @@ function saveMultipleGamePlays(file) {
         return 26162;
       case 50: // ConHex
         return 10989;
+      case 411: // Connect6
+        return 22847;
       case 390: // CuBirds
         return 245476;
       case 404: // Discordia
@@ -1076,6 +1078,8 @@ function saveMultipleGamePlays(file) {
         return 166669;
       case 328: // QANGO
         return 200632;
+      case 415: // Quibbles
+        return 388539;
       case 72: // R-Eco
         return 15290;
       case 303: // Race
@@ -1090,6 +1094,8 @@ function saveMultipleGamePlays(file) {
         return 42452;
       case 344: // Red7
         return 161417;
+      case 410: // Red Cathedral
+        return 227224;
       case 398: // Renature
         return 300001;
       case 34: // Richelieu
