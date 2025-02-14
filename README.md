@@ -22,7 +22,11 @@ Before you use this tool with your real *BGG* account, I recommd that you first 
 
 - **If I run *YucataPlayLoggerForBGG* twice with the same file, will my *BGG* play logs be doubled ?**  
 No. *YucataPlayLoggerForBGG* reads all your *BGG* plays first, checks them and only creates the play logs that don't exist yet. *YucataPlayLoggerForBGG* does this by looking into the comment of a *BGG* play log and checking whether it contains the link to the corresponding play at *Yucata.de*, e.g. `https://www.yucata.de/en/Game/OnTheUnderground/11874329`. This URL contains the id of the corresponding play at *Yucata.de* and therefore can be used as a key.
+- **When I try to download all my *Yucata.de* plays into a local file, I click the download button but nothing happens**  
+The number of plays you try to download might be too high for the system to process them in one single step. Try to split the time period of all your plays into several smaller periods, set the filter for each period accordingly to create *several* `yucataplays.json` files. Then Upload each file to [BGG][], one after the other, following the steps desribes above.
 
 ## Addition Info
 
 This dialog is based on *[SPLU](https://github.com/dazeysan/SPLU)*. Thanks to the SPLU developers for the idea and code base! *[SPLU](https://github.com/dazeysan/SPLU)* allows comfortable play editing. See [SPLU BGG Guild](https://www.boardgamegeek.com/guild/3403).
+
+[BGG]: https://boardgamegeek.com/
