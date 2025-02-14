@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.14";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.15";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -875,6 +875,8 @@ function saveMultipleGamePlays(file) {
         return 39938;
       case 326: // Carson City Cards
         return 248117;
+      case 408: // Cartographers
+        return 263918;
       case 338: // Castle Rampage
         return 256569;
       case 349: // Chakra
@@ -1042,6 +1044,8 @@ function saveMultipleGamePlays(file) {
         return 66589;
       case 376: // Newton
         return 244711;
+      case 400: // NMBR 9
+        return 217449;
       case 366: // On the Underground
         return 281152;
       case 51: // One-Eye
@@ -1219,8 +1223,12 @@ function saveMultipleGamePlays(file) {
         return 128554;
       case 354: // War Chest
         return 249259;
+      case 412: // Waters of Nereus
+        return 234578;
       case 134: // Way of the Dragon
         return 67609;
+      case 416: // White Castle
+        return 371942;
       case 37: // Yspahan
         return 22345;
       case 1: // Yucata
