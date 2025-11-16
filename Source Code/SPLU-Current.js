@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.16";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.17";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -911,6 +911,8 @@ function saveMultipleGamePlays(file) {
         return 79282;
       case 78: // Famiglia
         return 81453;
+      case 425: // Fancy Feathers
+        return 363481;
       case 130: // Fantasy Dice Battles
         return 158947;
       case 44: // Fearsome Floors
@@ -931,6 +933,8 @@ function saveMultipleGamePlays(file) {
         return 2719;
       case 112: // Glen More
         return 66362;
+      case 371: // Glory Islands
+        return 347302;
       case 23: // Gobang & Gomoku
       case 358: // Gobang & Gomoku2
         return 11929;
@@ -945,6 +949,8 @@ function saveMultipleGamePlays(file) {
         return 19100;
       case 355: // Hadara
         return 269144;
+      case 375: // Haleakala
+        return 177727;
       case 89: // Hawaii
         return 106217;
       case 138: // Helios
@@ -967,6 +973,8 @@ function saveMultipleGamePlays(file) {
         return 63888;
       case 403: // Innovation Ultimate
         return 388367;
+      case 420: // Instinct
+        return 437919;
       case 108: // Jaipur
         return 54043;
       case 20: // Just 4 Fun
@@ -1058,10 +1066,14 @@ function saveMultipleGamePlays(file) {
         return 31497;
       case 14: // Othello
         return 2389;
+      case 422: // P'achakuna
+        return 321596;
       case 135: // Packet Row
         return 144492;
       case 346: // Pandoria
         return 248167;
+      case 417: // Paris
+        return 276498;
       case 158: // Pax Porfiriana
         return 128780;
       case 80: // Pergamon
@@ -1182,6 +1194,10 @@ function saveMultipleGamePlays(file) {
         return 66505;
       case 144: // The Voyages of Marco Polo
         return 171623;
+      case 416: // The white castle
+        return 371942;
+      case 421: // Tholos
+        return 341753;
       case 82: // Thunderstone
         return 53953;
       case 55: // Thurn and Taxis
