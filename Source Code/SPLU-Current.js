@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.17";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.19";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -1087,6 +1087,7 @@ function saveMultipleGamePlays(file) {
       case 25: // Ponte del Diavolo
         return 27172;
       case 131: // Port Royal
+      case 435: // Port Royal2
         return 156009;
       case 379: // PragaCaputRegni
         return 308765;
@@ -1245,6 +1246,8 @@ function saveMultipleGamePlays(file) {
         return 67609;
       case 416: // White Castle
         return 371942;
+      case 437: //Wispwood
+        return 445044;
       case 37: // Yspahan
         return 22345;
       case 1: // Yucata
