@@ -1,4 +1,4 @@
-    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.19";
+    var YUCATA_PLAY_LOGGER_FOR_BGG_VERSION = "0.11.20";
 
     //Check if they aren't on a BGG site and alert them to that fact.
     if(window.location.host.slice(-17)!="boardgamegeek.com" &&  window.location.host.slice(-17)!="videogamegeek.com" && window.location.host.slice(-11)!="rpggeek.com" && window.location.host.slice(-6)!="bgg.cc" && window.location.host.slice(-10)!="geekdo.com"){
@@ -810,6 +810,8 @@ function saveMultipleGamePlays(file) {
         return 27385;
       case 340: // Ali Baba
         return 233960;
+      case 418: // Alpujarras
+        return 330208;
       case 88: // Antike Duellum
         return 104955;
       case 334: // Argo
