@@ -1,3 +1,5 @@
+!!! Yucata does not support this tool anymore. Yucata recommends using the [BG Stats app](https://www.bgstatsapp.com/) instead !!!
+
 # *Yucata.de* play auto logger for *BGG*
 
 ![](YucataPlayLoggerForBGG.jpg)
